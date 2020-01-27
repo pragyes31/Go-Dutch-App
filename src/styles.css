@@ -30,7 +30,7 @@ body {
   align-items: center;
 }
 
-.new-trip-button {
+#new-trip-button {
   background-color: #11999e;
   color: #e4f9f5;
   font-size: 16px;
@@ -45,14 +45,15 @@ body {
   box-shadow: 0 4px #40514e;
 }
 
-.new-trip-button:active {
+#new-trip-button:active {
   box-shadow: 0 1px #999;
   transform: translateY(2px);
 }
 
-.new-trip-modal {
+#new-trip-modal {
   display: none;
   width: 90%;
   height: 200px;
   background-color: #eee;
+  z-index: 4;
 }
