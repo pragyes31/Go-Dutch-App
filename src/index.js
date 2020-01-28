@@ -10,6 +10,7 @@ const createGoDutchApp = function() {
     isModalOpen
       ? (newTripModal.style.display = "none")
       : (newTripModal.style.display = "block");
+    newTripBtn.disabled = !isModalOpen;
     isModalOpen = !isModalOpen;
   };
   newTripBtn.addEventListener("click", toggleModal);
