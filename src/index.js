@@ -3,7 +3,7 @@ import "./styles.css";
 const createGoDutchApp = function() {
   const newTripBtn = document.querySelector("#new-trip-button");
   const newTripModal = document.querySelector("#new-trip-modal");
-  newTripModal.style.display = "none";
+  //newTripModal.style.display = "none";
   const closeModalBtn = document.querySelector("#close-modal");
   let isModalOpen = false;
   const toggleModal = function() {
@@ -20,7 +20,7 @@ const createGoDutchApp = function() {
   };
   newTripBtn.addEventListener("click", toggleModal);
   closeModalBtn.addEventListener("click", toggleModal);
-  document.addEventListener("click", closeModal);
+  //document.addEventListener("click", closeModal);
 };
 
 const GoDutchApp = new createGoDutchApp();

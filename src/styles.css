@@ -13,6 +13,10 @@ body {
   padding: 0px;
 }
 
+input {
+  outline: none;
+}
+
 .main-title {
   background-color: #ddd;
   width: 100%;
@@ -55,7 +59,9 @@ body {
   height: 80vh;
   background-color: #eee;
   z-index: 4;
+  margin: 0 auto;
   position: fixed;
-  top: 10vw;
-  left: 10vh;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
