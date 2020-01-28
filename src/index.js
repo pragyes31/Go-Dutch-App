@@ -5,13 +5,12 @@ const createGoDutchApp = function() {
   const newTripModal = document.querySelector("#new-trip-modal");
   newTripModal.style.display = "none";
   const closeModalBtn = document.querySelector("#close-modal");
+  let isModalOpen = false;
   const toggleModal = function() {
-    console.log(newTripModal.style.display);
-    if (newTripModal.style.display === "none") {
-      newTripModal.style.display = "block";
-    } else {
-      newTripModal.style.display = "none";
-    }
+    isModalOpen
+      ? (newTripModal.style.display = "none")
+      : (newTripModal.style.display = "block");
+    isModalOpen = !isModalOpen;
   };
   newTripBtn.addEventListener("click", toggleModal);
   closeModalBtn.addEventListener("click", toggleModal);
