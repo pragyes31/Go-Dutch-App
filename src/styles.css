@@ -51,8 +51,11 @@ body {
 }
 
 #new-trip-modal {
-  width: 90%;
-  height: 200px;
+  width: 80vw;
+  height: 80vh;
   background-color: #eee;
   z-index: 4;
+  position: fixed;
+  top: 10vw;
+  left: 10vh;
 }
