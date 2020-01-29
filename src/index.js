@@ -7,7 +7,9 @@ const createGoDutchApp = function() {
   const closeModalBtn = document.querySelector("#close-modal");
   const addTravellerBtn = document.querySelector("#add-travellers");
   const travellerDetails = document.querySelector("#traveller-details");
+  const addTripBtn = document.querySelector("#add-trip");
   let isModalOpen = false;
+
   const toggleModal = function() {
     travellerDetails.innerHTML = "";
     isModalOpen
@@ -16,6 +18,7 @@ const createGoDutchApp = function() {
     newTripBtn.disabled = !isModalOpen;
     isModalOpen = !isModalOpen;
   };
+
   const addTraveller = function(e) {
     e.preventDefault();
     let labelElem = document.createElement("label");
@@ -30,10 +33,13 @@ const createGoDutchApp = function() {
     travellerDetails.appendChild(labelElem);
     travellerDetails.appendChild(travellerName);
   };
+
   newTripBtn.addEventListener("click", toggleModal);
   closeModalBtn.addEventListener("click", toggleModal);
   addTravellerBtn.addEventListener("click", addTraveller);
 };
+
+const addTrip = function() {};
 
 const GoDutchApp = new createGoDutchApp();
 
