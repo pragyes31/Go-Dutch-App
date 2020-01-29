@@ -7,6 +7,7 @@ const createGoDutchApp = function() {
   const closeModalBtn = document.querySelector("#close-modal");
   const addTravellerBtn = document.querySelector("#add-travellers");
   const tripDetailsForm = document.querySelector("#trip-details-form");
+  const travellerDetails = document.querySelector("#traveller-details");
   let isModalOpen = false;
   const toggleModal = function() {
     console.log("boom");
@@ -23,8 +24,8 @@ const createGoDutchApp = function() {
     let breakLine = document.createElement("br");
     travellerName.appendChild(breakLine);
     labelElem.innerHTML = "Traveller's name:";
-    tripDetailsForm.appendChild(labelElem);
-    tripDetailsForm.appendChild(travellerName);
+    travellerDetails.appendChild(labelElem);
+    travellerDetails.appendChild(travellerName);
   };
 
   // const closeModal = function(e) {
