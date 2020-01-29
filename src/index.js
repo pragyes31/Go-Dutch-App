@@ -9,7 +9,7 @@ const createGoDutchApp = function() {
   const travellerDetails = document.querySelector("#traveller-details");
   let isModalOpen = false;
   const toggleModal = function() {
-    console.log("boom");
+    travellerDetails.innerHTML = "";
     isModalOpen
       ? (newTripModal.style.display = "none")
       : (newTripModal.style.display = "block");
@@ -21,21 +21,23 @@ const createGoDutchApp = function() {
     let labelElem = document.createElement("label");
     let travellerName = document.createElement("input");
     let breakLine = document.createElement("br");
+
+    travellerName.className += "traveller-name";
+    travellerName.placeholder = "Add traveller's name";
+
     travellerDetails.appendChild(breakLine);
-    labelElem.innerHTML = "Traveller's name:";
+    labelElem.innerHTML = "Traveller's name: ";
     travellerDetails.appendChild(labelElem);
     travellerDetails.appendChild(travellerName);
   };
-
-  // const closeModal = function(e) {
-  //   if (!e.target.matches("#new-trip-modal, #new-trip-button") && isModalOpen)
-  //     toggleModal();
-  // };
-
   newTripBtn.addEventListener("click", toggleModal);
   closeModalBtn.addEventListener("click", toggleModal);
   addTravellerBtn.addEventListener("click", addTraveller);
-  //document.addEventListener("click", closeModal);
 };
 
 const GoDutchApp = new createGoDutchApp();
+
+// const closeModal = function(e) {
+//   if (!e.target.matches("#new-trip-modal, #new-trip-button") && isModalOpen)
+//     toggleModal();
+// };
