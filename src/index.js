@@ -22,7 +22,7 @@ const createGoDutchApp = function() {
     let labelElem = document.createElement("label");
     let travellerName = document.createElement("input");
     let breakLine = document.createElement("br");
-    travellerName.appendChild(breakLine);
+    travellerDetails.appendChild(breakLine);
     labelElem.innerHTML = "Traveller's name:";
     travellerDetails.appendChild(labelElem);
     travellerDetails.appendChild(travellerName);
