@@ -3,10 +3,9 @@ import "./styles.css";
 const createGoDutchApp = function() {
   const newTripBtn = document.querySelector("#new-trip-button");
   const newTripModal = document.querySelector("#new-trip-modal");
-  //newTripModal.style.display = "none";
+  newTripModal.style.display = "none";
   const closeModalBtn = document.querySelector("#close-modal");
   const addTravellerBtn = document.querySelector("#add-travellers");
-  const tripDetailsForm = document.querySelector("#trip-details-form");
   const travellerDetails = document.querySelector("#traveller-details");
   let isModalOpen = false;
   const toggleModal = function() {
