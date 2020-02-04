@@ -47,3 +47,57 @@ const GoDutchApp = new createGoDutchApp();
 //   if (!e.target.matches("#new-trip-modal, #new-trip-button") && isModalOpen)
 //     toggleModal();
 // };
+
+const demoState = [
+  {
+    tripName: "Trip to New York",
+    travellers: [{ id: 1, name: "Will" }, { id: 2, name: "Mike" }],
+    expenses: [
+      {
+        expnese: "Flights",
+        whoPaid: "Mike",
+        howMuch: 170
+      },
+      {
+        expnese: "Hotels",
+        whoPaid: "Will",
+        howMuch: 120
+      }
+    ]
+  }
+];
+
+let totalExpenses = demoState.map(eve =>
+  eve.expenses.reduce((acc, cur) => acc.howMuch + cur.howMuch)
+);
+let perPersonExpenses = totalExpenses / 2;
+console.log(totalExpenses, perPersonExpenses);
+const handleExpenseShare = () => {};
+/*
+{
+    tripName: "Trip to StarCourt mall",
+    travellers: [
+      { id: 1, name: "Will" },
+      { id: 2, name: "Mike" },
+      { id: 3, name: "Lucas" },
+      { id: 4, name: "Dustin" },
+      { id: 5, name: "Eleven" },
+      { id: 6, name: "Max" }
+    ],
+
+    expenses: [
+      {
+        expnese: "Movies",
+        whoPaid: "Max",
+        forWhom: ["Will", "Mike", "Lucas", "Dustin", "Eleven", "Max"],
+        howMuch: 30
+      },
+      {
+        expnese: "Popcorn",
+        whoPaid: "Dustin",
+        forWhom: ["Lucas", "Dustin", "Eleven", "Max"],
+        howMuch: 5
+      }
+    ]
+  }
+*/
