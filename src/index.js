@@ -51,28 +51,35 @@ const GoDutchApp = new createGoDutchApp();
 const demoState = [
   {
     tripName: "Trip to New York",
-    travellers: [{ id: 1, name: "Will" }, { id: 2, name: "Mike" }],
+    travellers: [
+      { id: 0, name: "Will", totalExpensesShare: 270, outstandingAmount: 0 },
+      { id: 1, name: "Mike", totalExpensesShare: 0, outstandingAmount: 0 }
+    ],
     expenses: [
       {
         expnese: "Flights",
         whoPaid: "Mike",
-        howMuch: 170
-      },
-      {
-        expnese: "Hotels",
-        whoPaid: "Will",
-        howMuch: 120
+        howMuch: 270
       }
     ]
   }
 ];
 
-let totalExpenses = demoState.map(eve =>
-  eve.expenses.reduce((acc, cur) => acc.howMuch + cur.howMuch)
+let totalExpenses = demoState[0].expenses.reduce(
+  (acc, cur) => acc.howMuch + cur.howMuch
 );
+console.log(totalExpenses);
 let perPersonExpenses = totalExpenses / 2;
-console.log(totalExpenses, perPersonExpenses);
-const handleExpenseShare = () => {};
+//console.log(totalExpenses, perPersonExpenses);
+const handleOutstanding = () => {
+  demoState[0].travellers.forEach(traveler => {
+    traveler.outstandingAmount =
+      perPersonExpenses - traveler.totalExpensesShare;
+  });
+  //console.log(demoState[0].travellers);
+};
+const splitExpenses = () => {};
+handleOutstanding();
 /*
 {
     tripName: "Trip to StarCourt mall",
