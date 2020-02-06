@@ -83,16 +83,7 @@ const sortByOutstanding = () => {
   );
 };
 handleOutstanding();
-console.log(demoState[0].travellers);
 sortByOutstanding();
-
-const findHighest = arr => {
-  return arr.reduce((a, b) => Math.max(a, b));
-};
-
-const findLowest = arr => {
-  return arr.reduce((a, b) => Math.min(a, b));
-};
 
 const splitExpenses = () => {
   let highestOutstanding = demoState[0].travellers.reduce((a, b) =>
@@ -101,9 +92,22 @@ const splitExpenses = () => {
   let lowestOutstanding = demoState[0].travellers.reduce((a, b) =>
     Math.min(a.outstandingAmount, b.outstandingAmount)
   );
+
+  let indexOfHighest = demoState[0].travellers.find(
+    elem => (elem.outstandingAmount = highestOutstanding)
+  );
   console.log(highestOutstanding, lowestOutstanding);
+  console.log(indexOfHighest);
+  let indexOfLowest = demoState[0].travellers.find(
+    elem => (elem.outstandingAmount = lowestOutstanding)
+  );
+  console.log(indexOfLowest);
+  if (highestOutstanding - lowestOutstanding > 0) {
+  }
 };
+
 splitExpenses();
+
 /*
 {
     tripName: "Trip to StarCourt mall",
