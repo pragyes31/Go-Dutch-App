@@ -67,19 +67,43 @@ const demoState = [
 
 let totalExpenses = demoState[0].expenses.reduce(
   (acc, cur) => acc.howMuch + cur.howMuch
-);
-console.log(totalExpenses);
-let perPersonExpenses = totalExpenses / 2;
-//console.log(totalExpenses, perPersonExpenses);
+).howMuch;
+
+let perPersonExpenses = totalExpenses / demoState[0].travellers.length;
+
 const handleOutstanding = () => {
   demoState[0].travellers.forEach(traveler => {
     traveler.outstandingAmount =
       perPersonExpenses - traveler.totalExpensesShare;
   });
-  //console.log(demoState[0].travellers);
 };
-const splitExpenses = () => {};
+const sortByOutstanding = () => {
+  demoState[0].travellers.sort(
+    (a, b) => b.outstandingAmount - a.outstandingAmount
+  );
+};
 handleOutstanding();
+console.log(demoState[0].travellers);
+sortByOutstanding();
+
+const findHighest = arr => {
+  return arr.reduce((a, b) => Math.max(a, b));
+};
+
+const findLowest = arr => {
+  return arr.reduce((a, b) => Math.min(a, b));
+};
+
+const splitExpenses = () => {
+  let highestOutstanding = demoState[0].travellers.reduce((a, b) =>
+    Math.max(a.outstandingAmount, b.outstandingAmount)
+  );
+  let lowestOutstanding = demoState[0].travellers.reduce((a, b) =>
+    Math.min(a.outstandingAmount, b.outstandingAmount)
+  );
+  console.log(highestOutstanding, lowestOutstanding);
+};
+splitExpenses();
 /*
 {
     tripName: "Trip to StarCourt mall",
