@@ -93,14 +93,16 @@ const splitExpenses = () => {
     return elem.outstandingAmount === highestOutstanding;
   });
 
-  let lowestOutstanding = demoState[0].travellers.reduce((a, b) =>
-    Math.min(a.outstandingAmount, b.outstandingAmount)
-  );
+  let lowestOutstanding = () =>
+    demoState[0].travellers.reduce((a, b) =>
+      Math.min(a.outstandingAmount, b.outstandingAmount)
+    );
+  console.log(lowestOutstanding());
   let lowestObj = demoState[0].travellers.find(
     elem => elem.outstandingAmount === lowestOutstanding
   );
-console.log(lowestObj, highestObj)
- /* if (Math.abs(highestOutstanding) <= Math.abs(lowestOutstanding) ) {
+  console.log(lowestObj, highestObj);
+  /* if (Math.abs(highestOutstanding) <= Math.abs(lowestOutstanding) ) {
     lowestObj.outstandingAmount = lowestObj.outstandingAmount + highestOutstanding;
    highestObj.outstandingAmount = 0;
   }
