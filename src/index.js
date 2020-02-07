@@ -39,8 +39,6 @@ const createGoDutchApp = function() {
   addTravellerBtn.addEventListener("click", addTraveller);
 };
 
-const addTrip = function() {};
-
 const GoDutchApp = new createGoDutchApp();
 
 // const closeModal = function(e) {
@@ -65,6 +63,8 @@ const demoState = [
   }
 ];
 
+// use condition later on to whether there are one or more expenses.
+// Do not use reduce in below function if just one expense.
 let totalExpenses = demoState[0].expenses.reduce(
   (acc, cur) => acc.howMuch + cur.howMuch
 ).howMuch;
@@ -77,6 +77,7 @@ const handleOutstanding = () => {
       perPersonExpenses - traveler.totalExpensesShare;
   });
 };
+
 const sortByOutstanding = () => {
   demoState[0].travellers.sort(
     (a, b) => b.outstandingAmount - a.outstandingAmount
@@ -84,28 +85,23 @@ const sortByOutstanding = () => {
 };
 handleOutstanding();
 sortByOutstanding();
-
 const splitExpenses = () => {
   let highestOutstanding = demoState[0].travellers.reduce((a, b) =>
     Math.max(a.outstandingAmount, b.outstandingAmount)
   );
+  let highestObj = demoState[0].travellers.find(elem => {
+    return elem.outstandingAmount === highestOutstanding;
+  });
+
   let lowestOutstanding = demoState[0].travellers.reduce((a, b) =>
     Math.min(a.outstandingAmount, b.outstandingAmount)
   );
-
-  let indexOfHighest = demoState[0].travellers.find(
-    elem => (elem.outstandingAmount = highestOutstanding)
+  let lowestObj = demoState[0].travellers.find(
+    elem => elem.outstandingAmount === lowestOutstanding
   );
-  console.log(highestOutstanding, lowestOutstanding);
-  console.log(indexOfHighest);
-  let indexOfLowest = demoState[0].travellers.find(
-    elem => (elem.outstandingAmount = lowestOutstanding)
-  );
-  console.log(indexOfLowest);
   if (highestOutstanding - lowestOutstanding > 0) {
   }
 };
-
 splitExpenses();
 
 /*
