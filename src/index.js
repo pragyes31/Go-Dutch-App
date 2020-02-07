@@ -99,12 +99,21 @@ const splitExpenses = () => {
   let lowestObj = demoState[0].travellers.find(
     elem => elem.outstandingAmount === lowestOutstanding
   );
-  if (highestOutstanding - lowestOutstanding > 0) {
+console.log(lowestObj, highestObj)
+ /* if (Math.abs(highestOutstanding) <= Math.abs(lowestOutstanding) ) {
+    lowestObj.outstandingAmount = lowestObj.outstandingAmount + highestOutstanding;
+   highestObj.outstandingAmount = 0;
   }
+  else {
+
+  }
+  */
 };
 splitExpenses();
 
 /*
+A: 135 B -230
+
 {
     tripName: "Trip to StarCourt mall",
     travellers: [
