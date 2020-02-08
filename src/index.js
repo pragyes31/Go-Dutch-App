@@ -41,21 +41,16 @@ const createGoDutchApp = function() {
 
 const GoDutchApp = new createGoDutchApp();
 
-// const closeModal = function(e) {
-//   if (!e.target.matches("#new-trip-modal, #new-trip-button") && isModalOpen)
-//     toggleModal();
-// };
-
 const demoState = [
   {
     tripName: "Trip to New York",
     travellers: [
-      { id: 0, name: "Will", totalExpensesShare: 270, outstandingAmount: 0 },
-      { id: 1, name: "Mike", totalExpensesShare: 0, outstandingAmount: 0 }
+      { id: 0, name: "Will", userTotalExpenses: 270, amountUserOwes: 0 },
+      { id: 1, name: "Mike", userTotalExpenses: 0, amountUserOwes: 0 }
     ],
     expenses: [
       {
-        expnese: "Flights",
+        expneseName: "Flights",
         whoPaid: "Mike",
         howMuch: 270
       }
@@ -63,7 +58,7 @@ const demoState = [
   }
 ];
 
-// use condition later on to whether there are one or more expenses.
+// use condition later on to check whether there are one or more expenses.
 // Do not use reduce in below function if just one expense.
 let totalExpenses = demoState[0].expenses.reduce(
   (acc, cur) => acc.howMuch + cur.howMuch
@@ -73,73 +68,40 @@ let perPersonExpenses = totalExpenses / demoState[0].travellers.length;
 
 const handleOutstanding = () => {
   demoState[0].travellers.forEach(traveler => {
-    traveler.outstandingAmount =
-      perPersonExpenses - traveler.totalExpensesShare;
+    traveler.amountUserOwes = perPersonExpenses - traveler.userTotalExpenses;
   });
 };
 
-const sortByOutstanding = () => {
-  demoState[0].travellers.sort(
-    (a, b) => b.outstandingAmount - a.outstandingAmount
-  );
-};
 handleOutstanding();
-sortByOutstanding();
-const splitExpenses = () => {
-  let highestOutstanding = demoState[0].travellers.reduce((a, b) =>
-    Math.max(a.outstandingAmount, b.outstandingAmount)
+
+let highestOutstanding = () =>
+  demoState[0].travellers.reduce((a, b) =>
+    Math.max(a.amountUserOwes, b.amountUserOwes)
   );
+
+let lowestOutstanding = () =>
+  demoState[0].travellers.reduce((a, b) =>
+    Math.min(a.amountUserOwes, b.amountUserOwes)
+  );
+
+const splitExpenses = () => {
+  let highest = highestOutstanding();
+  let lowest = lowestOutstanding();
   let highestObj = demoState[0].travellers.find(elem => {
-    return elem.outstandingAmount === highestOutstanding;
+    return elem.amountUserOwes === highestOutstanding;
   });
 
-  let lowestOutstanding = () =>
-    demoState[0].travellers.reduce((a, b) =>
-      Math.min(a.outstandingAmount, b.outstandingAmount)
-    );
-  console.log(lowestOutstanding());
   let lowestObj = demoState[0].travellers.find(
-    elem => elem.outstandingAmount === lowestOutstanding
+    elem => elem.amountUserOwes === lowestOutstanding
   );
-  console.log(lowestObj, highestObj);
   /* if (Math.abs(highestOutstanding) <= Math.abs(lowestOutstanding) ) {
-    lowestObj.outstandingAmount = lowestObj.outstandingAmount + highestOutstanding;
-   highestObj.outstandingAmount = 0;
+    lowestObj.amountUserOwes = lowestObj.amountUserOwes + highestOutstanding;
+   highestObj.amountUserOwes = 0;
   }
   else {
+}
 
   }
   */
 };
 splitExpenses();
-
-/*
-A: 135 B -230
-
-{
-    tripName: "Trip to StarCourt mall",
-    travellers: [
-      { id: 1, name: "Will" },
-      { id: 2, name: "Mike" },
-      { id: 3, name: "Lucas" },
-      { id: 4, name: "Dustin" },
-      { id: 5, name: "Eleven" },
-      { id: 6, name: "Max" }
-    ],
-
-    expenses: [
-      {
-        expnese: "Movies",
-        whoPaid: "Max",
-        forWhom: ["Will", "Mike", "Lucas", "Dustin", "Eleven", "Max"],
-        howMuch: 30
-      },
-      {
-        expnese: "Popcorn",
-        whoPaid: "Dustin",
-        forWhom: ["Lucas", "Dustin", "Eleven", "Max"],
-        howMuch: 5
-      }
-    ]
-  }
-*/
