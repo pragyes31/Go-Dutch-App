@@ -43,8 +43,8 @@ const GoDutchApp = new createGoDutchApp();
 
 const demoState = [
   {
-    tripName: "Trip to New York",
-    travellers: [
+    eventName: "Trip to New York",
+    users: [
       { id: 0, name: "Will", userTotalExpenses: 270, amountUserOwes: 0 },
       { id: 1, name: "Mike", userTotalExpenses: 0, amountUserOwes: 0 }
     ],
@@ -64,34 +64,34 @@ let totalExpenses = demoState[0].expenses.reduce(
   (acc, cur) => acc.howMuch + cur.howMuch
 ).howMuch;
 
-let perPersonExpenses = totalExpenses / demoState[0].travellers.length;
+let perPersonExpense = totalExpenses / demoState[0].users.length;
 
 const handleOutstanding = () => {
-  demoState[0].travellers.forEach(traveler => {
-    traveler.amountUserOwes = perPersonExpenses - traveler.userTotalExpenses;
+  demoState[0].users.forEach(traveler => {
+    traveler.amountUserOwes = perPersonExpense - traveler.userTotalExpenses;
   });
 };
 
 handleOutstanding();
 
 let highestOutstanding = () =>
-  demoState[0].travellers.reduce((a, b) =>
+  demoState[0].users.reduce((a, b) =>
     Math.max(a.amountUserOwes, b.amountUserOwes)
   );
 
 let lowestOutstanding = () =>
-  demoState[0].travellers.reduce((a, b) =>
+  demoState[0].users.reduce((a, b) =>
     Math.min(a.amountUserOwes, b.amountUserOwes)
   );
 
 const splitExpenses = () => {
   let highest = highestOutstanding();
   let lowest = lowestOutstanding();
-  let highestObj = demoState[0].travellers.find(elem => {
+  let highestObj = demoState[0].users.find(elem => {
     return elem.amountUserOwes === highestOutstanding;
   });
 
-  let lowestObj = demoState[0].travellers.find(
+  let lowestObj = demoState[0].users.find(
     elem => elem.amountUserOwes === lowestOutstanding
   );
   /* if (Math.abs(highestOutstanding) <= Math.abs(lowestOutstanding) ) {
