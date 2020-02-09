@@ -66,37 +66,37 @@ let totalExpenses = demoState[0].expenses.reduce(
 
 let perPersonExpense = totalExpenses / demoState[0].users.length;
 
-const handleOutstanding = () => {
+const perPersonDebt = () => {
   demoState[0].users.forEach(traveler => {
     traveler.amountUserOwes = perPersonExpense - traveler.userTotalExpenses;
   });
 };
 
-handleOutstanding();
+perPersonDebt();
 
-let highestOutstanding = () =>
+let highestDebtAmount = () =>
   demoState[0].users.reduce((a, b) =>
     Math.max(a.amountUserOwes, b.amountUserOwes)
   );
 
-let lowestOutstanding = () =>
+let lowestDebtAmount = () =>
   demoState[0].users.reduce((a, b) =>
     Math.min(a.amountUserOwes, b.amountUserOwes)
   );
 
 const splitExpenses = () => {
-  let highest = highestOutstanding();
-  let lowest = lowestOutstanding();
-  let highestObj = demoState[0].users.find(elem => {
-    return elem.amountUserOwes === highestOutstanding;
+  let highestDebt = highestDebtAmount();
+  let lowestDebt = lowestDebtAmount();
+  let highestDebtObj = demoState[0].users.find(elem => {
+    return elem.amountUserOwes === highestDebtAmount;
   });
 
-  let lowestObj = demoState[0].users.find(
-    elem => elem.amountUserOwes === lowestOutstanding
+  let lowestDebtObj = demoState[0].users.find(
+    elem => elem.amountUserOwes === lowestDebtAmount
   );
-  /* if (Math.abs(highestOutstanding) <= Math.abs(lowestOutstanding) ) {
-    lowestObj.amountUserOwes = lowestObj.amountUserOwes + highestOutstanding;
-   highestObj.amountUserOwes = 0;
+  /* if (Math.abs(highestDebt) <= Math.abs(lowestDebt) ) {
+    lowestObj.amountUserOwes = lowestObj.amountUserOwes + highestDebt;
+   highestDebtObj.amountUserOwes = 0;
   }
   else {
 }
