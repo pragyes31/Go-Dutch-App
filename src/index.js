@@ -100,7 +100,6 @@ const splitExpenses = () => {
   }
   else {
 }
-
   }
   */
 };
