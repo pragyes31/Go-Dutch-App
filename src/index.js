@@ -85,21 +85,29 @@ let lowestDebtAmount = () =>
   );
 
 const splitExpenses = () => {
+  let isAmountUserOwesZero = demoState[0].users.every(
+    user => user.amountUserOwes === 0
+  );
   let highestDebt = highestDebtAmount();
   let lowestDebt = lowestDebtAmount();
-  let highestDebtObj = demoState[0].users.find(elem => {
-    return elem.amountUserOwes === highestDebtAmount;
-  });
-
-  let lowestDebtObj = demoState[0].users.find(
-    elem => elem.amountUserOwes === lowestDebtAmount
+  console.log(highestDebt, lowestDebt);
+  let highestDebtObj = demoState[0].users.find(
+    elem => elem.amountUserOwes === highestDebt
   );
-  /* if (Math.abs(highestDebt) <= Math.abs(lowestDebt) ) {
-    lowestObj.amountUserOwes = lowestObj.amountUserOwes + highestDebt;
-   highestDebtObj.amountUserOwes = 0;
+  let lowestDebtObj = demoState[0].users.find(
+    elem => elem.amountUserOwes === lowestDebt
+  );
+  console.log(lowestDebtObj, highestDebtObj);
+
+  while (!isAmountUserOwesZero) {
+    if (Math.abs(highestDebt) <= Math.abs(lowestDebt)) {
+      lowestDebtObj.amountUserOwes = lowestDebtObj.amountUserOwes + highestDebt;
+      highestDebtObj.amountUserOwes = 0;
+    } else {
+    }
   }
-  else {
-}
+
+  /* 
   }
   */
 };
