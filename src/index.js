@@ -74,12 +74,12 @@ const perPersonDebt = () => {
 
 perPersonDebt();
 
-let highestDebtAmount = () =>
+let highestDebtAmountFn = () =>
   demoState[0].users.reduce((a, b) =>
     Math.max(a.amountUserOwes, b.amountUserOwes)
   );
-
-let lowestDebtAmount = () =>
+// biggestLendingAmt
+let highestLenderAmtFn = () =>
   demoState[0].users.reduce((a, b) =>
     Math.min(a.amountUserOwes, b.amountUserOwes)
   );
@@ -88,30 +88,33 @@ const splitExpenses = () => {
   let isAmountUserOwesZero = () => {
     return demoState[0].users.every(user => user.amountUserOwes === 0);
   };
-  let highestDebt = highestDebtAmount();
-  let lowestDebt = lowestDebtAmount();
+  let highestDebt = highestDebtAmountFn();
+  let highestLenderAmt = highestLenderAmtFn();
 
   let getHighestDebtObjFn = () => {
     return demoState[0].users.find(elem => elem.amountUserOwes === highestDebt);
   };
-  let getLowestDebtObjFn = () => {
-    return demoState[0].users.find(elem => elem.amountUserOwes === lowestDebt);
+  let gethighestLenderAmtObjFn = () => {
+    return demoState[0].users.find(
+      elem => elem.amountUserOwes === highestLenderAmt
+    );
   };
   let highestDebtObj = getHighestDebtObjFn();
-  let lowestDebtObj = getLowestDebtObjFn();
+  let highestLenderAmtObj = gethighestLenderAmtObjFn();
   while (!isAmountUserOwesZero()) {
-    if (Math.abs(highestDebt) <= Math.abs(lowestDebt)) {
-      lowestDebtObj.amountUserOwes += highestDebt;
+    if (Math.abs(highestDebt) <= Math.abs(highestLenderAmt)) {
+      highestLenderAmtObj.amountUserOwes += highestDebt; //
       highestDebtObj.amountUserOwes = 0;
-      highestDebt = highestDebtAmount();
+      highestLenderAmt += highestDebt;
+      highestDebt = highestDebtAmountFn();
       highestDebtObj = getHighestDebtObjFn();
     } else {
-      let remainingDebt = highestDebt + lowestDebt;
-      lowestDebtObj.amountUserOwes = 0;
-      highestDebtObj.amountUserOwes = remainingDebt;
-      lowestDebt = lowestDebtAmount();
-      lowestDebtObj = getLowestDebtObjFn();
-      while (Math.abs(highestDebt) !== 0) {}
+      highestDebtObj.amountUserOwes += highestLenderAmtObj.amountUserOwes; //
+      highestLenderAmtObj.amountUserOwes = 0;
+      // print "highestDebtObj" owes "highestLenderAmtObj" "highestLenderAmt" amount
+      highestDebt += highestLenderAmt;
+      highestLenderAmt = highestLenderAmtFn();
+      highestLenderAmtObj = gethighestLenderAmtObjFn();
     }
   }
 };
