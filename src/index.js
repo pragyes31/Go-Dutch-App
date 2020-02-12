@@ -46,7 +46,8 @@ const demoState = [
     eventName: "Trip to New York",
     users: [
       { id: 0, name: "Will", userTotalExpenses: 270, amountUserOwes: 0 },
-      { id: 1, name: "Mike", userTotalExpenses: 0, amountUserOwes: 0 }
+      { id: 1, name: "Mike", userTotalExpenses: 0, amountUserOwes: 0 },
+      { id: 2, name: "Eleven", userTotalExpenses: 0, amountUserOwes: 0 }
     ],
     expenses: [
       {
@@ -63,58 +64,70 @@ const demoState = [
 let totalExpenses = demoState[0].expenses.reduce(
   (acc, cur) => acc.howMuch + cur.howMuch
 ).howMuch;
-
 let perPersonExpense = totalExpenses / demoState[0].users.length;
-
 const perPersonDebt = () => {
   demoState[0].users.forEach(traveler => {
     traveler.amountUserOwes = perPersonExpense - traveler.userTotalExpenses;
   });
 };
-
 perPersonDebt();
 
+//console.table(demoState[0].users)
+
+let isAmountUserOwesZero = () => {
+  return demoState[0].users.every(user => user.amountUserOwes === 0);
+};
+console.log(isAmountUserOwesZero());
 let highestDebtAmountFn = () =>
   demoState[0].users.reduce((a, b) =>
-    Math.max(a.amountUserOwes, b.amountUserOwes)
+    a.amountUserOwes > b.amountUserOwes ? a.amountUserOwes : b.amountUserOwes
   );
-// biggestLendingAmt
+
 let highestLenderAmtFn = () =>
   demoState[0].users.reduce((a, b) =>
-    Math.min(a.amountUserOwes, b.amountUserOwes)
+    a.amountUserOwes < b.amountUserOwes ? a.amountUserOwes : b.amountUserOwes
   );
 
-const splitExpenses = () => {
-  let isAmountUserOwesZero = () => {
-    return demoState[0].users.every(user => user.amountUserOwes === 0);
-  };
-  let highestDebt = highestDebtAmountFn();
-  let highestLenderAmt = highestLenderAmtFn();
+let getHighestDebtObjFn = () => {
+  return demoState[0].users.find(elem => elem.amountUserOwes === highestDebt);
+};
+let gethighestLenderObjFn = () => {
+  return demoState[0].users.find(
+    elem => elem.amountUserOwes === highestLenderAmt
+  );
+};
 
-  let getHighestDebtObjFn = () => {
-    return demoState[0].users.find(elem => elem.amountUserOwes === highestDebt);
-  };
-  let gethighestLenderAmtObjFn = () => {
-    return demoState[0].users.find(
-      elem => elem.amountUserOwes === highestLenderAmt
-    );
-  };
-  let highestDebtObj = getHighestDebtObjFn();
-  let highestLenderAmtObj = gethighestLenderAmtObjFn();
+let highestDebt = highestDebtAmountFn();
+let highestLenderAmt = highestLenderAmtFn();
+let highestDebtObj = getHighestDebtObjFn();
+let highestLenderObj = gethighestLenderObjFn();
+//console.log(highestDebt);
+const splitExpenses = () => {
   while (!isAmountUserOwesZero()) {
-    if (Math.abs(highestDebt) <= Math.abs(highestLenderAmt)) {
-      highestLenderAmtObj.amountUserOwes += highestDebt; //
+   if (Math.abs(highestDebt) <= Math.abs(highestLenderAmt)) {
+      highestLenderObj.amountUserOwes += highestDebt; //
       highestDebtObj.amountUserOwes = 0;
+      // print "highestDebtObj" owes "highestLenderObj" Math.abs(highestDebt)
+      console.log(
+        `${highestDebtObj.name} owes ${highestLenderObj.name} ${Math.abs(
+          highestDebt
+        )}`
+      );
       highestLenderAmt += highestDebt;
       highestDebt = highestDebtAmountFn();
       highestDebtObj = getHighestDebtObjFn();
     } else {
-      highestDebtObj.amountUserOwes += highestLenderAmtObj.amountUserOwes; //
-      highestLenderAmtObj.amountUserOwes = 0;
-      // print "highestDebtObj" owes "highestLenderAmtObj" "highestLenderAmt" amount
+      highestDebtObj.amountUserOwes += highestLenderObj.amountUserOwes; //
+      highestLenderObj.amountUserOwes = 0;
+      // print "highestDebtObj" owes "highestLenderObj" "highestLenderAmt" amount
+      console.log(
+        `${highestDebtObj.name} owes ${
+          highestLenderObj.name
+        } ${highestLenderAmt}`
+      );
       highestDebt += highestLenderAmt;
       highestLenderAmt = highestLenderAmtFn();
-      highestLenderAmtObj = gethighestLenderAmtObjFn();
+      highestLenderObj = gethighestLenderObjFn();
     }
   }
 };
