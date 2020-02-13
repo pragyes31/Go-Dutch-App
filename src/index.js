@@ -47,13 +47,19 @@ const demoState = [
     users: [
       { id: 0, name: "Will", userTotalExpenses: 270, amountUserOwes: 0 },
       { id: 1, name: "Mike", userTotalExpenses: 0, amountUserOwes: 0 },
-      { id: 2, name: "Eleven", userTotalExpenses: 0, amountUserOwes: 0 }
+      { id: 2, name: "Eleven", userTotalExpenses: 0, amountUserOwes: 0 },
+      { id: 3, name: "Dustin", userTotalExpenses: 450, amountUserOwes: 0 }
     ],
     expenses: [
       {
         expneseName: "Flights",
         whoPaid: "Mike",
         howMuch: 270
+      },
+      {
+        expneseName: "Flights",
+        whoPaid: "Dustin",
+        howMuch: 450
       }
     ]
   }
@@ -62,8 +68,9 @@ const demoState = [
 // use condition later on to check whether there are one or more expenses.
 // Do not use reduce in below function if just one expense.
 let totalExpenses = demoState[0].expenses.reduce(
-  (acc, cur) => acc.howMuch + cur.howMuch
-).howMuch;
+  (acc, cur) => acc + cur.howMuch,
+  0
+);
 let perPersonExpense = totalExpenses / demoState[0].users.length;
 const perPersonDebt = () => {
   demoState[0].users.forEach(traveler => {
@@ -79,15 +86,17 @@ let isAmountUserOwesZero = () => {
 };
 console.log(isAmountUserOwesZero());
 let highestDebtAmountFn = () =>
-  demoState[0].users.reduce((a, b) =>
-    a.amountUserOwes > b.amountUserOwes ? a.amountUserOwes : b.amountUserOwes
+  demoState[0].users.reduce(
+    (a, b) => (a > b.amountUserOwes ? a : b.amountUserOwes),
+    0
   );
 
 let highestLenderAmtFn = () =>
-  demoState[0].users.reduce((a, b) =>
-    a.amountUserOwes < b.amountUserOwes ? a.amountUserOwes : b.amountUserOwes
+  demoState[0].users.reduce(
+    (a, b) => (a < b.amountUserOwes ? a : b.amountUserOwes),
+    0
   );
-
+console.log(highestLenderAmtFn());
 let getHighestDebtObjFn = () => {
   return demoState[0].users.find(elem => elem.amountUserOwes === highestDebt);
 };
@@ -104,8 +113,8 @@ let highestLenderObj = gethighestLenderObjFn();
 //console.log(highestDebt);
 const splitExpenses = () => {
   while (!isAmountUserOwesZero()) {
-   if (Math.abs(highestDebt) <= Math.abs(highestLenderAmt)) {
-      highestLenderObj.amountUserOwes += highestDebt; //
+    if (Math.abs(highestDebt) <= Math.abs(highestLenderAmt)) {
+      highestLenderObj.amountUserOwes += highestDebt; // 150
       highestDebtObj.amountUserOwes = 0;
       // print "highestDebtObj" owes "highestLenderObj" Math.abs(highestDebt)
       console.log(
@@ -113,7 +122,7 @@ const splitExpenses = () => {
           highestDebt
         )}`
       );
-      highestLenderAmt += highestDebt;
+      highestLenderAmt += highestDebt; //-100
       highestDebt = highestDebtAmountFn();
       highestDebtObj = getHighestDebtObjFn();
     } else {
@@ -125,8 +134,8 @@ const splitExpenses = () => {
           highestLenderObj.name
         } ${highestLenderAmt}`
       );
-      highestDebt += highestLenderAmt;
-      highestLenderAmt = highestLenderAmtFn();
+      highestDebt += highestLenderAmt; // -50
+      highestLenderAmt = highestLenderAmtFn(); // 200
       highestLenderObj = gethighestLenderObjFn();
     }
   }
