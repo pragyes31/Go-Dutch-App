@@ -72,19 +72,26 @@ let totalExpenses = demoState[0].expenses.reduce(
   0
 );
 let perPersonExpense = totalExpenses / demoState[0].users.length;
-const perPersonDebt = () => {
-  demoState[0].users.forEach(traveler => {
-    traveler.amountUserOwes = perPersonExpense - traveler.userTotalExpenses;
-  });
-};
-perPersonDebt();
+console.log("perPersonExpense", perPersonExpense);
+// const perPersonDebt = () => {
+//   demoState[0].users.forEach(traveler => {
+//     traveler.amountUserOwes = perPersonExpense - traveler.userTotalExpenses;
+//   });
+// };
 
-//console.table(demoState[0].users)
+const perPersonDebt = () => {
+  for (let i = 0; i < demoState[0].users.length; i++) {
+    demoState[0].users[i].amountUserOwes =
+      perPersonExpense - demoState[0].users[i].userTotalExpenses;
+  }
+};
+
+perPersonDebt();
+console.table(demoState[0].users);
 
 let isAmountUserOwesZero = () => {
   return demoState[0].users.every(user => user.amountUserOwes === 0);
 };
-console.log(isAmountUserOwesZero());
 let highestDebtAmountFn = () =>
   demoState[0].users.reduce(
     (a, b) => (a > b.amountUserOwes ? a : b.amountUserOwes),
@@ -96,7 +103,6 @@ let highestLenderAmtFn = () =>
     (a, b) => (a < b.amountUserOwes ? a : b.amountUserOwes),
     0
   );
-console.log(highestLenderAmtFn());
 let getHighestDebtObjFn = () => {
   return demoState[0].users.find(elem => elem.amountUserOwes === highestDebt);
 };
@@ -141,3 +147,31 @@ const splitExpenses = () => {
   }
 };
 splitExpenses();
+
+let trip = {
+  users: ["06", "03", "14", "04", "02", "34", "21"],
+  expenses: [
+    {
+      type: "car",
+      paidBy: "02",
+      amount: 114.13
+    }
+  ]
+};
+
+trip.balance = trip.users.map(
+  id =>
+    +(
+      trip.expenses.reduce(
+        (total, { paidBy, amount }) => (paidBy === id ? total + amount : total),
+        0
+      ) - trip.totalCostPerUser
+    ).toFixed(2)
+);
+
+trip.paymentsGraph = [...Array(trip.users.length)].map(() =>
+  Array(trip.users.length).fill(0)
+);
+// console.log(trip.paymentsGraph);
+
+// console.log(trip.balance);
