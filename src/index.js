@@ -73,11 +73,6 @@ let totalExpenses = demoState[0].expenses.reduce(
 );
 let perPersonExpense = totalExpenses / demoState[0].users.length;
 console.log("perPersonExpense", perPersonExpense);
-// const perPersonDebt = () => {
-//   demoState[0].users.forEach(traveler => {
-//     traveler.amountUserOwes = perPersonExpense - traveler.userTotalExpenses;
-//   });
-// };
 
 const perPersonDebt = () => {
   for (let i = 0; i < demoState[0].users.length; i++) {
