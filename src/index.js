@@ -45,11 +45,11 @@ const demoState = [
   {
     eventName: "Trip to New York",
     users: [
-      { id: 0, name: "Will", userTotalExpenses: 1000, amountUserOwes: 0 },
+      { id: 0, name: "Will", userTotalExpenses: 0, amountUserOwes: 0 },
       { id: 1, name: "Mike", userTotalExpenses: 0, amountUserOwes: 0 },
       { id: 2, name: "Eleven", userTotalExpenses: 0, amountUserOwes: 0 },
-      { id: 3, name: "Dustin", userTotalExpenses: 1000, amountUserOwes: 0 },
-      { id: 4, name: "Max", userTotalExpenses: 2000, amountUserOwes: 0 }
+      { id: 3, name: "Dustin", userTotalExpenses: 0, amountUserOwes: 0 },
+      { id: 4, name: "Max", userTotalExpenses: 0, amountUserOwes: 0 }
     ],
     expenses: [
       {
@@ -62,19 +62,24 @@ const demoState = [
         expneseName: "Hotels",
         whoPaid: "Max",
         howMuch: 2000,
-        id: 0
+        id: 4
       },
       {
         expneseName: "Food",
         whoPaid: "Dustin",
         howMuch: 1000,
-        id: 0
+        id: 3
       }
     ]
   }
 ];
 
-const populateExpenses = () => {};
+const populateExpenses = () => {
+  demoState[0].expenses.forEach(
+    exp => (demoState[0].users[exp.id].userTotalExpenses = exp.howMuch)
+  );
+};
+populateExpenses();
 
 // use condition later on to check whether there are one or more expenses.
 // Do not use reduce in below function if just one expense.
@@ -133,7 +138,7 @@ let highestDebtObj = getHighestDebtObjFn();
 let highestLenderObj = gethighestLenderObjFn();
 const splitExpenses = () => {
   console.log(demoState);
-  while (isAmountUserOwesZero()) {
+  while (!isAmountUserOwesZero()) {
     if (Math.abs(highestDebt) <= Math.abs(highestLenderAmt)) {
       highestLenderObj.amountUserOwes += highestDebt; // -1400+600 = -800, -800+600=-200
       highestDebtObj.amountUserOwes = 0;
