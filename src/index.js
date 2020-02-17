@@ -45,25 +45,36 @@ const demoState = [
   {
     eventName: "Trip to New York",
     users: [
-      { id: 0, name: "Will", userTotalExpenses: 270, amountUserOwes: 0 },
+      { id: 0, name: "Will", userTotalExpenses: 1000, amountUserOwes: 0 },
       { id: 1, name: "Mike", userTotalExpenses: 0, amountUserOwes: 0 },
       { id: 2, name: "Eleven", userTotalExpenses: 0, amountUserOwes: 0 },
-      { id: 3, name: "Dustin", userTotalExpenses: 450, amountUserOwes: 0 }
+      { id: 3, name: "Dustin", userTotalExpenses: 1000, amountUserOwes: 0 },
+      { id: 4, name: "Max", userTotalExpenses: 2000, amountUserOwes: 0 }
     ],
     expenses: [
       {
         expneseName: "Flights",
-        whoPaid: "Mike",
-        howMuch: 270
+        whoPaid: "Will",
+        howMuch: 1000,
+        id: 0
       },
       {
-        expneseName: "Flights",
+        expneseName: "Hotels",
+        whoPaid: "Max",
+        howMuch: 2000,
+        id: 0
+      },
+      {
+        expneseName: "Food",
         whoPaid: "Dustin",
-        howMuch: 450
+        howMuch: 1000,
+        id: 0
       }
     ]
   }
 ];
+
+const populateExpenses = () => {};
 
 // use condition later on to check whether there are one or more expenses.
 // Do not use reduce in below function if just one expense.
@@ -71,6 +82,7 @@ let totalExpenses = demoState[0].expenses.reduce(
   (acc, cur) => acc + cur.howMuch,
   0
 );
+console.log(totalExpenses);
 let perPersonExpense = totalExpenses / demoState[0].users.length;
 console.log("perPersonExpense", perPersonExpense);
 
@@ -84,18 +96,26 @@ const perPersonDebt = () => {
 perPersonDebt();
 console.table(demoState[0].users);
 
+const sortByhighestDebt = () => {
+  demoState[0].users.sort((a, b) => a.amountUserOwes - b.amountUserOwes);
+};
+
+console.table(demoState[0].users);
+
+sortByhighestDebt();
+
 let isAmountUserOwesZero = () => {
   return demoState[0].users.every(user => user.amountUserOwes === 0);
 };
 let highestDebtAmountFn = () =>
   demoState[0].users.reduce(
-    (a, b) => (a > b.amountUserOwes ? a : b.amountUserOwes),
+    (a, b) => (a >= b.amountUserOwes ? a : b.amountUserOwes),
     0
   );
 
 let highestLenderAmtFn = () =>
   demoState[0].users.reduce(
-    (a, b) => (a < b.amountUserOwes ? a : b.amountUserOwes),
+    (a, b) => (a <= b.amountUserOwes ? a : b.amountUserOwes),
     0
   );
 let getHighestDebtObjFn = () => {
@@ -107,15 +127,15 @@ let gethighestLenderObjFn = () => {
   );
 };
 
-let highestDebt = highestDebtAmountFn();
-let highestLenderAmt = highestLenderAmtFn();
+let highestDebt = highestDebtAmountFn(); // 600
+let highestLenderAmt = highestLenderAmtFn(); // -1400
 let highestDebtObj = getHighestDebtObjFn();
 let highestLenderObj = gethighestLenderObjFn();
-//console.log(highestDebt);
 const splitExpenses = () => {
-  while (!isAmountUserOwesZero()) {
+  console.log(demoState);
+  while (isAmountUserOwesZero()) {
     if (Math.abs(highestDebt) <= Math.abs(highestLenderAmt)) {
-      highestLenderObj.amountUserOwes += highestDebt; // 150
+      highestLenderObj.amountUserOwes += highestDebt; // -1400+600 = -800, -800+600=-200
       highestDebtObj.amountUserOwes = 0;
       // print "highestDebtObj" owes "highestLenderObj" Math.abs(highestDebt)
       console.log(
@@ -123,17 +143,17 @@ const splitExpenses = () => {
           highestDebt
         )}`
       );
-      highestLenderAmt += highestDebt; //-100
+      highestLenderAmt += highestDebt; // -1400+600 = -800 -800+600=-200
       highestDebt = highestDebtAmountFn();
       highestDebtObj = getHighestDebtObjFn();
     } else {
-      highestDebtObj.amountUserOwes += highestLenderObj.amountUserOwes; //
+      highestDebtObj.amountUserOwes += highestLenderObj.amountUserOwes; // 600
       highestLenderObj.amountUserOwes = 0;
       // print "highestDebtObj" owes "highestLenderObj" "highestLenderAmt" amount
       console.log(
-        `${highestDebtObj.name} owes ${
-          highestLenderObj.name
-        } ${highestLenderAmt}`
+        `${highestDebtObj.name} owes ${highestLenderObj.name} ${Math.abs(
+          highestLenderAmt
+        )}`
       );
       highestDebt += highestLenderAmt; // -50
       highestLenderAmt = highestLenderAmtFn(); // 200
