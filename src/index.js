@@ -69,6 +69,12 @@ const demoState = [
         whoPaid: "Dustin",
         howMuch: 1000,
         id: 3
+      },
+      {
+        expneseName: "Food",
+        whoPaid: "Dustin",
+        howMuch: 1000,
+        id: 3
       }
     ]
   }
@@ -76,7 +82,7 @@ const demoState = [
 
 const populateExpenses = () => {
   demoState[0].expenses.forEach(
-    exp => (demoState[0].users[exp.id].userTotalExpenses = exp.howMuch)
+    exp => (demoState[0].users[exp.id].userTotalExpenses += exp.howMuch)
   );
 };
 populateExpenses();
@@ -139,8 +145,8 @@ let highestLenderObj = gethighestLenderObjFn();
 const splitExpenses = () => {
   console.log(demoState);
   while (!isAmountUserOwesZero()) {
-    if (Math.abs(highestDebt) <= Math.abs(highestLenderAmt)) {
-      highestLenderObj.amountUserOwes += highestDebt; // -1400+600 = -800, -800+600=-200
+    if (Math.abs(highestDebt) < Math.abs(highestLenderAmt)) {
+      highestLenderObj.amountUserOwes += highestDebt; //
       highestDebtObj.amountUserOwes = 0;
       // print "highestDebtObj" owes "highestLenderObj" Math.abs(highestDebt)
       console.log(
@@ -148,11 +154,11 @@ const splitExpenses = () => {
           highestDebt
         )}`
       );
-      highestLenderAmt += highestDebt; // -1400+600 = -800 -800+600=-200
+      highestLenderAmt += highestDebt;
       highestDebt = highestDebtAmountFn();
       highestDebtObj = getHighestDebtObjFn();
-    } else {
-      highestDebtObj.amountUserOwes += highestLenderObj.amountUserOwes; // 600
+    } else if (Math.abs(highestDebt) > Math.abs(highestLenderAmt)) {
+      highestDebtObj.amountUserOwes += highestLenderObj.amountUserOwes; //
       highestLenderObj.amountUserOwes = 0;
       // print "highestDebtObj" owes "highestLenderObj" "highestLenderAmt" amount
       console.log(
@@ -160,38 +166,26 @@ const splitExpenses = () => {
           highestLenderAmt
         )}`
       );
-      highestDebt += highestLenderAmt; // -50
-      highestLenderAmt = highestLenderAmtFn(); // 200
+      highestDebt += highestLenderAmt; //
+      highestLenderAmt = highestLenderAmtFn(); //
+      highestLenderObj = gethighestLenderObjFn();
+    } else if (Math.abs(highestDebt) === Math.abs(highestLenderAmt)) {
+      highestLenderObj.amountUserOwes += highestDebt;
+      highestDebtObj.amountUserOwes = 0;
+      highestDebtObj.amountUserOwes += highestLenderObj.amountUserOwes;
+      highestLenderObj.amountUserOwes = 0;
+      console.log(
+        `${highestDebtObj.name} owes ${highestLenderObj.name} ${Math.abs(
+          highestDebt
+        )}`
+      );
+      highestLenderAmt += highestDebt;
+      highestDebt = highestDebtAmountFn();
+      highestDebtObj = getHighestDebtObjFn();
+      highestDebt += highestLenderAmt;
+      highestLenderAmt = highestLenderAmtFn();
       highestLenderObj = gethighestLenderObjFn();
     }
   }
 };
 splitExpenses();
-
-let trip = {
-  users: ["06", "03", "14", "04", "02", "34", "21"],
-  expenses: [
-    {
-      type: "car",
-      paidBy: "02",
-      amount: 114.13
-    }
-  ]
-};
-
-trip.balance = trip.users.map(
-  id =>
-    +(
-      trip.expenses.reduce(
-        (total, { paidBy, amount }) => (paidBy === id ? total + amount : total),
-        0
-      ) - trip.totalCostPerUser
-    ).toFixed(2)
-);
-
-trip.paymentsGraph = [...Array(trip.users.length)].map(() =>
-  Array(trip.users.length).fill(0)
-);
-// console.log(trip.paymentsGraph);
-
-// console.log(trip.balance);
