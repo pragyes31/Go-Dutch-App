@@ -87,8 +87,6 @@ const populateExpenses = () => {
 };
 populateExpenses();
 
-// use condition later on to check whether there are one or more expenses.
-// Do not use reduce in below function if just one expense.
 let totalExpenses = demoState[0].expenses.reduce(
   (acc, cur) => acc + cur.howMuch,
   0
