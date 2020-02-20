@@ -41,6 +41,9 @@ const createGoDutchApp = function() {
 
 const GoDutchApp = new createGoDutchApp();
 
+const demoState = [];
+
+/*
 const demoState = [
   {
     eventName: "Trip to New York",
@@ -187,3 +190,4 @@ const splitExpenses = () => {
   }
 };
 splitExpenses();
+*/
