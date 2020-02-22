@@ -9,6 +9,8 @@ const createGoDutchApp = function() {
   const addTravellerBtn = document.querySelector("#add-travellers");
   const travellerDetails = document.querySelector("#traveller-details");
   const addTripBtn = document.querySelector("#add-trip");
+  const travelerNameInput = document.querySelectorAll(".traveller-name");
+
   let isModalOpen = false;
 
   const toggleModal = function() {
@@ -25,10 +27,8 @@ const createGoDutchApp = function() {
     let labelElem = document.createElement("label");
     let travellerName = document.createElement("input");
     let breakLine = document.createElement("br");
-
     travellerName.className += "traveller-name";
     travellerName.placeholder = "Add traveller's name";
-
     travellerDetails.appendChild(breakLine);
     labelElem.innerHTML = "Traveller's name: ";
     travellerDetails.appendChild(labelElem);
@@ -36,7 +36,9 @@ const createGoDutchApp = function() {
   };
 
   const addTrip = () => {
-    console.log("boom");
+    let travellersNameArray = [];
+    travelerNameInput.forEach(elem => travellersNameArray.push(elem.value));
+    console.log(travellersNameArray);
   };
 
   addTripForm.addEventListener("submit", e => {
