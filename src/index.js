@@ -39,6 +39,7 @@ const createGoDutchApp = function() {
     let travellersNameArray = [];
     travelerNameInput.forEach(elem => travellersNameArray.push(elem.value));
     console.log(travellersNameArray);
+    toggleModal();
   };
 
   addTripForm.addEventListener("submit", e => {
