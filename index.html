@@ -8,37 +8,33 @@
   <body>
     <div id="app">
       <header class="main-title">Go<span class="dash">-</span>Dutch app</header>
-      <div class="new-trip">
-        <button id="new-trip-button">Add new trip!</button>
+      <div class="new-event">
+        <button id="new-event-button">Add new event!</button>
       </div>
-      <div id="new-trip-modal">
-        <form id="trip-details-form">
-          <label for="trip-name">Add Trip Name:</label>
+      <div class="event">
+        <header class="event-header">Trip to New York</header>
+        <div class="user-list"></div>
+      </div>
+      <div id="new-event-modal">
+        <form id="event-details-form">
+          <label for="event-name">Add event name:</label>
           <input
-            id="trip-name"
+            id="event-name"
             type="text"
-            placeholder="Name your trip"
+            placeholder="Name your event"
             required
           /><br />
-          <div id="traveller-details"></div>
-          <button id="add-travellers">Add travellers</button>
-          <div id="traveller-details">
-            <br /><label>Traveller's name: </label
-            ><input
-              class="traveller-name"
-              placeholder="Add traveller's name"
-              required
-            />
+          <div id="user-details"></div>
+          <button id="add-users">Add users</button>
+          <div id="user-details">
+            <br /><label>User's name: </label
+            ><input class="user-name" placeholder="Add user's name" required />
           </div>
-          <div id="traveller-details">
-            <br /><label>Traveller's name: </label
-            ><input
-              class="traveller-name"
-              placeholder="Add traveller's name"
-              required
-            />
+          <div id="user-details">
+            <br /><label>user's name: </label
+            ><input class="user-name" placeholder="Add user's name" required />
           </div>
-          <button type="submit" id="add-trip">Add trip</button>
+          <button type="submit" id="add-event">Add event</button>
         </form>
         <button id="close-modal">Close</button>
       </div>
