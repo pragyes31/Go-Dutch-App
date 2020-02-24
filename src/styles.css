@@ -65,3 +65,14 @@ input {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+.event-header {
+  width: 100%;
+  background-color: #eee;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.event-header:hover {
+  background-color: #ccc;
+}
