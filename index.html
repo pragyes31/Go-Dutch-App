@@ -11,9 +11,33 @@
       <div class="new-event">
         <button id="new-event-button">Add new event!</button>
       </div>
-      <div class="event">
-        <header class="event-header">Trip to New York</header>
-        <div class="user-list"></div>
+      <div id="events-list">
+        <div class="event" id="event-1">
+          <header class="event-name" id="event-name-1">
+            Trip to New York
+          </header>
+
+          <div class="event-details">
+            <div class="users-list">
+              <ul>
+                <li>Mike</li>
+                <li>Will</li>
+                <li>Dustin</li>
+                <li>Lucas</li>
+              </ul>
+            </div>
+            <div class="expenses-list"></div>
+            <div class="compute-expenses">
+              <ul>
+                <li>Mike owes Will 200</li>
+                <li>Mike owes Lucas 90</li>
+              </ul>
+            </div>
+            <div class="add-expense">
+              <button>Add new expense</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="new-event-modal">
         <form id="event-details-form">
