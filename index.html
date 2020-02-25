@@ -8,60 +8,6 @@
   <body>
     <div id="app">
       <header class="main-title">Go<span class="dash">-</span>Dutch app</header>
-      <div class="new-event">
-        <button id="new-event-button">Add new event!</button>
-      </div>
-      <div id="events-list">
-        <div class="event" id="event-1">
-          <header class="event-name" id="event-name-1">
-            Trip to New York
-          </header>
-
-          <div class="event-details">
-            <div class="users-list">
-              <ul>
-                <li>Mike</li>
-                <li>Will</li>
-                <li>Dustin</li>
-                <li>Lucas</li>
-              </ul>
-            </div>
-            <div class="expenses-list"></div>
-            <div class="compute-expenses">
-              <ul>
-                <li>Mike owes Will 200</li>
-                <li>Mike owes Lucas 90</li>
-              </ul>
-            </div>
-            <div class="add-expense">
-              <button>Add new expense</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="new-event-modal">
-        <form id="event-details-form">
-          <label for="event-name">Add event name:</label>
-          <input
-            id="event-name"
-            type="text"
-            placeholder="Name your event"
-            required
-          /><br />
-          <div id="user-details"></div>
-          <button id="add-users">Add users</button>
-          <div id="user-details">
-            <br /><label>User's name: </label
-            ><input class="user-name" placeholder="Add user's name" required />
-          </div>
-          <div id="user-details">
-            <br /><label>user's name: </label
-            ><input class="user-name" placeholder="Add user's name" required />
-          </div>
-          <button type="submit" id="add-event">Add event</button>
-        </form>
-        <button id="close-modal">Close</button>
-      </div>
     </div>
     <script src="src/index.js"></script>
   </body>
