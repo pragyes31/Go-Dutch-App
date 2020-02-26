@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css?family=Odibee+Sans|Raleway&display=swap");
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+.outer-box {
+  width:100%;
+  @include flex-center;
+}
+
+.go-dutch-app {
+  width: 70%;
+  background-color: #123321;
+ @include flex-center;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+}
+
+.main-title {
+  background-color: #ddd;
+  height: 3rem;
+  @include flex-center;
+  font-size: 1.4rem;
+  font-family: "Raleway", serif;
+  font-weight: bold;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  .go-dutch-app {
+    width:100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  .go-dutch-app {
+    width:75%;
+  }  
+}
