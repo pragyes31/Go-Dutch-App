@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Odibee+Sans|Raleway&display=swap");
 
+$primary-color: #fa4659;
+$secondary-color: #2eb872;
+$background-color:#feffe4;
+$another-color: #a3de83;
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -18,7 +23,7 @@ body {
 }
 
 .go-dutch-app {
-  width: 70%;
+  width: 80%;
   background-color: #123321;
  @include flex-center;
   flex-direction: column;
@@ -37,16 +42,16 @@ body {
   font-weight: bold;
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 768px) {
   
   .go-dutch-app {
-    width:100%;
+    width:90%;
   }
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
-  
-  .go-dutch-app {
-    width:75%;
-  }  
-}
+// @media (min-width: 520px) and (max-width: 768px) {
+//   .go-dutch-app {
+//     width:80%;
+//   }
+ 
+// }
