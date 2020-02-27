@@ -23,7 +23,7 @@ body {
 }
 
 .go-dutch-app {
-  width: 80%;
+  min-width: 600px;
   background-color: #123321;
  @include flex-center;
   flex-direction: column;
@@ -42,10 +42,10 @@ body {
   font-weight: bold;
 }
 
-@media (min-width: 320px) and (max-width: 768px) {
+@media  (max-width: 600px) {
   
   .go-dutch-app {
-    width:90%;
+    min-width:100%;
   }
 }
 
