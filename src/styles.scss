@@ -1,12 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Odibee+Sans|Raleway&display=swap");
 
-$primary-color: #ee4540;
-$secondary-color: #f7b71d;
-$background-color:#347474;
-$font-color: #63b7af;
-
-
-//#a8e6cf • #dcedc1 • #ffd3b6 • #ffaaa5 • #ff8b94
+$primary-color: #e6456d;
+$secondary-color: #08d9d6;
+$background-color:#252a34;
+$font-color: #eaeaea;
 
 @mixin flex-position($prop1, $prop2) {
   display: flex;
@@ -26,8 +23,13 @@ body {
 }
 
 .go-dutch-app {
-  min-width: 600px;
+  width: 100%;
+  @include flex-position(center, center);
   flex-direction: column;
+}
+
+.header {
+  width: 100%;
 }
 
 .main-title {
@@ -37,39 +39,46 @@ body {
   font-size: 1.4rem;
   font-family: "Raleway", serif;
   font-weight: bold;
-  color: $secondary-color;
+  color: $font-color;
+}
+
+.app-dashboard {
+  min-width: 600px;
+  height: 100%;
+  @include flex-position(center, center);
+  border: 2px solid black;
 }
 
 .add-data {
   @include flex-position(space-around, center);
   height: 50px;
+  width: 100%;
+  margin-top: 1rem;
+  
 }
 
 .add-data-btn {
-  height: 30px;
-  width: 120px;
+  height: 35px;
+  width: 150px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: bold;
 }
 
 .add-expense-btn {
   background-color: $primary-color;
-  color:#fff;
+  color:$font-color;
 }
 
 .add-friend-btn {
   background-color: $secondary-color;
-  color:#000;
+  color:$background-color;
 }
 
-@media  (max-width: 600px) {
-  
-  .go-dutch-app {
-    min-width:100%;
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .add-data {
+    flex-direction: column;
   }
-}
-
-// @media (min-width: 520px) and (max-width: 768px) {
-//   .go-dutch-app {
-//     width:80%;
-//   }
  
-// }
+}
