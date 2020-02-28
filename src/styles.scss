@@ -44,14 +44,13 @@ body {
 
 .app-dashboard {
   min-width: 600px;
-  height: 100%;
+  height: auto;
   @include flex-position(center, center);
   border: 2px solid black;
 }
 
 .add-data {
   @include flex-position(space-around, center);
-  height: 50px;
   width: 100%;
   margin-top: 1rem;
   
