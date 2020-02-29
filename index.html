@@ -16,14 +16,23 @@
         <div class="app-dashboard">
           <div class="add-data">
             <div class="add-expense">
-              <button class="add-expense-btn add-data-btn">
+              <button class="add-expense-btn add-new-btn">
                 Add new Expense
               </button>
             </div>
             <div class="add-friend">
-              <button class="add-friend-btn add-data-btn">
+              <button class="add-friend-btn add-new-btn">
                 Add new Friend
               </button>
+            </div>
+            <div class="add-expense-modal modal-window"></div>
+            <div class="add-friend-modal modal-window">
+              <form>
+                <label for="name">Name</label>
+                <input id="name" type="text" />
+                <button type="submit">Add Friend</button>
+                <button type="button" class="close-modal">Cancel</button>
+              </form>
             </div>
           </div>
         </div>

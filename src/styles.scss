@@ -39,7 +39,7 @@ body {
   font-size: 1.4rem;
   font-family: "Raleway", serif;
   font-weight: bold;
-  color: $font-color;
+  color: $primary-color;
 }
 
 .app-dashboard {
@@ -47,21 +47,23 @@ body {
   height: auto;
   @include flex-position(center, center);
   border: 2px solid black;
+  padding: 20px 0px;
 }
 
 .add-data {
   @include flex-position(space-around, center);
   width: 100%;
-  margin-top: 1rem;
   
 }
 
-.add-data-btn {
-  height: 35px;
-  width: 150px;
+.add-new-btn {
+  height: 50px;
+  width: 180px;
   border-radius: 5px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: bold;
+  cursor: pointer;
+  border: none;
 }
 
 .add-expense-btn {
@@ -74,10 +76,27 @@ body {
   color:$background-color;
 }
 
+.modal-window {
+  display: none;
+  width: 500px;
+  height: 300px;
+  background-color: #eee;
+  z-index: 4;
+  margin: 0 auto;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 @media (min-width: 320px) and (max-width: 480px) {
   .add-data {
     flex-direction: column;
+  }
+
+  .add-expense-btn {
+    margin-bottom: 20px;
   }
  
 }
