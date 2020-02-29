@@ -25,13 +25,26 @@
                 Add new Friend
               </button>
             </div>
-            <div class="add-expense-modal modal-window"></div>
+            <div class="add-expense-modal modal-window">
+              <form action="">
+                <label for="expense-name">Expense Name</label>
+                <input id="expense-name" type="text" /><br />
+                <label for="paid-by">Paid by</label>
+                <input id="paid-by" type="text" />
+                <button type="submit">Add Expense</button>
+                <button type="button" class="close-modal close-expense-modal">
+                  Cancel
+                </button>
+              </form>
+            </div>
             <div class="add-friend-modal modal-window">
               <form>
                 <label for="name">Name</label>
                 <input id="name" type="text" />
                 <button type="submit">Add Friend</button>
-                <button type="button" class="close-modal">Cancel</button>
+                <button type="button" class="close-modal close-friend-modal">
+                  Cancel
+                </button>
               </form>
             </div>
           </div>

@@ -89,6 +89,10 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.open-modal {
+  display: block;
+}
+
 
 @media (min-width: 320px) and (max-width: 480px) {
   .add-data {
