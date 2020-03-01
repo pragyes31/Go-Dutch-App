@@ -45,7 +45,8 @@ body {
 .app-dashboard {
   min-width: 600px;
   height: auto;
-  @include flex-position(center, center);
+  @include flex-position(center, space-around);
+  flex-direction: column;
   border: 2px solid black;
   padding: 20px 0px;
 }
@@ -53,7 +54,6 @@ body {
 .add-data {
   @include flex-position(space-around, center);
   width: 100%;
-  
 }
 
 .add-new-btn {
@@ -76,6 +76,29 @@ body {
   color:$background-color;
 }
 
+.users-data {
+  margin-top: 50px;
+}
+
+.user-data {
+  padding: 0px 20px;
+  background-color:lighten($background-color, 30%);
+  color: lighten($font-color, 50%);
+}
+
+.user-summary {
+  @include flex-position(space-between,  center)
+  height:40px;
+}
+
+.user-name, .user-balance {
+  display: inline;
+}
+
+.accordion-logo {
+  cursor: pointer;
+}
+
 .modal-window {
   display: none;
   width: 500px;
@@ -95,12 +118,20 @@ body {
 
 
 @media (min-width: 320px) and (max-width: 480px) {
+ 
+  .app-dashboard {
+    min-width: 100%; 
+  }
   .add-data {
     flex-direction: column;
   }
 
   .add-expense-btn {
-    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .modal-window {
+    width: 100%;
   }
  
 }

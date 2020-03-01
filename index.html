@@ -15,42 +15,62 @@
         </div>
         <div class="app-dashboard">
           <div class="add-data">
-            <div class="add-expense">
-              <button class="add-expense-btn add-new-btn">
-                Add new Expense
-              </button>
-            </div>
             <div class="add-friend">
               <button class="add-friend-btn add-new-btn">
                 Add new Friend
               </button>
             </div>
-            <div class="add-expense-modal modal-window">
-              <form action="">
-                <label for="expense-name">Expense Name</label>
-                <input id="expense-name" type="text" /><br />
-                <label for="paid-by">Paid by</label>
-                <input id="paid-by" type="text" />
-                <button type="submit">Add Expense</button>
-                <button type="button" class="close-modal close-expense-modal">
-                  Cancel
-                </button>
-              </form>
+            <div class="add-expense">
+              <button class="add-expense-btn add-new-btn">
+                Add new Expense
+              </button>
             </div>
-            <div class="add-friend-modal modal-window">
-              <form>
-                <label for="name">Name</label>
-                <input id="name" type="text" />
-                <button type="submit">Add Friend</button>
-                <button type="button" class="close-modal close-friend-modal">
-                  Cancel
-                </button>
-              </form>
+          </div>
+          <div class="users-data">
+            <div class="user-data">
+              <div class="user-summary">
+                <div class="user-details">
+                  <div class="user-name">Itika</div>
+                  <div class="user-balance">owes you 4,000</div>
+                </div>
+                <div class="accordion-logo">
+                  <img
+                    src="/src/plus-new.png"
+                    alt="plus"
+                    width="25"
+                    height="25"
+                  />
+                </div>
+              </div>
+              <div class="user-balance-sheet"></div>
             </div>
+          </div>
+          <div class="add-friend-modal modal-window">
+            <form class="add-friend-form">
+              <label for="name">Name</label>
+              <input id="name" type="text" />
+              <button type="submit">Add Friend</button>
+              <button type="button" class="close-modal close-friend-modal">
+                Cancel
+              </button>
+            </form>
+          </div>
+          <div class="add-expense-modal modal-window">
+            <form class="add-expense-form">
+              <label for="expense-name">Expense Name</label>
+              <input id="expense-name" type="text" /><br />
+              <label for="paid-by">Paid by</label>
+              <input id="paid-by" type="text" />
+              <button type="submit">Add Expense</button>
+              <button type="button" class="close-modal close-expense-modal">
+                Cancel
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </div>
+    <script src="src/index.js"></script>
     <!-- Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>    <script src="src/index.js"></script> -->
   </body>
 </html>
