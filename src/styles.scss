@@ -47,7 +47,6 @@ body {
   height: auto;
   @include flex-position(center, space-around);
   flex-direction: column;
-  border: 2px solid black;
   padding: 20px 0px;
 }
 
@@ -87,8 +86,8 @@ body {
 }
 
 .user-summary {
-  @include flex-position(space-between,  center)
-  height:40px;
+  @include flex-position(space-between, center);
+  height: 45px;
 }
 
 .user-name, .user-balance {
