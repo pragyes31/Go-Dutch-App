@@ -26,29 +26,11 @@
               </button>
             </div>
           </div>
-          <div class="users-data">
-            <div class="user-data user-01">
-              <div class="user-summary">
-                <div class="user-details">
-                  <div class="user-name user-01">Will</div>
-                  <div class="user-balance user-01">owes you 4,000</div>
-                </div>
-                <div class="accordion-logo">
-                  <img
-                    src="/src/plus-new.png"
-                    alt="plus"
-                    width="25"
-                    height="25"
-                  />
-                </div>
-              </div>
-              <div class="user-balance-sheet"></div>
-            </div>
-          </div>
+          <div class="users-data"></div>
           <div class="add-friend-modal modal-window">
             <form class="add-friend-form">
-              <label for="name">Name</label>
-              <input id="name" type="text" />
+              <label for="friend-name">Name</label>
+              <input id="friend-name" type="text" required />
               <button type="submit" class="friend-btn">Add Friend</button>
               <button type="button" class="close-modal close-friend-modal">
                 Cancel
@@ -58,9 +40,11 @@
           <div class="add-expense-modal modal-window">
             <form class="add-expense-form">
               <label for="expense-name">Expense Name</label>
-              <input id="expense-name" type="text" /><br />
-              <label for="paid-by">Paid by</label>
-              <input id="paid-by" type="text" />
+              <input id="expense-name" type="text" required /><br />
+              <label for="select-payer">Paid by:</label>
+              <select name="payer" id="select-payer">
+                <option value="">--Please choose a friend--</option> </select
+              ><br /><br />
               <button type="submit" class="expense-btn">Add Expense</button>
               <button type="button" class="close-modal close-expense-modal">
                 Cancel

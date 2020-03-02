@@ -1,21 +1,19 @@
 import "./styles.scss";
 
 const createGoDutchApp = function() {
+  let balanceSheet = [];
   const addNewBtns = document.querySelectorAll(".add-new-btn");
   const addexpenseModal = document.querySelector(".add-expense-modal");
   const addFriendModal = document.querySelector(".add-friend-modal");
   const closeModalBtns = document.querySelectorAll(".close-modal");
   const addFriendForm = document.querySelector(".add-friend-form");
+  const usersData = document.querySelector(".users-data");
+  const friendInput = document.querySelector("#friend-name");
+  const selectPayer = document.querySelector("#select-payer");
   let isModalOpen = false;
-  let userCount = 0;
+  let userCount = 1;
   const toggleModal = e => {
     if (!isModalOpen) {
-      console.log(e.target.parentNode.classList);
-      // for(key in e.target.classList) {
-      //   if(e.target.classList[key].indexOf("friend")===-1) {
-      //     let isFriendBtnClicked =
-      //   }
-      // }
       let isExpenseBtnClicked = e.target.classList.contains(
         "add-expense-btn" || "expense-btn"
       );
@@ -35,15 +33,50 @@ const createGoDutchApp = function() {
     isModalOpen = !isModalOpen;
   };
 
-  const addNewFriend = e => {
+  const populateUserDetails = friendName => {
+    const userDataMarkup = `
+  <div class="user-data user-${userCount}">
+  <div class="user-summary">
+    <div class="user-details">
+      <div class="user-name user-${userCount}">${friendName}</div>
+      <div class="user-balance user-${userCount}"></div>
+    </div>
+    <div class="accordion-logo">
+      <img
+        src="/src/plus-new.png"
+        alt="plus"
+        width="25"
+        height="25"
+      />
+    </div>
+  </div>
+  <div class="user-balance-sheet"></div>
+</div>`;
+    usersData.innerHTML += userDataMarkup;
+    selectPayer.innerHTML += `<option value="${friendName}">${friendName}</option>`;
+    friendInput.value = "";
+    userCount++;
+  };
+
+  const loadUserToSheet = friendName => {
+    let user = {
+      userName: friendName,
+      userId: `${userCount}`
+    };
+    balanceSheet = [...balanceSheet, user];
+  };
+
+  const addNewFriend = (e, friendName) => {
     closeModal(e);
+    loadUserToSheet(friendName);
+    populateUserDetails(friendName);
   };
 
   addNewBtns.forEach(btn => btn.addEventListener("click", toggleModal));
   closeModalBtns.forEach(btn => btn.addEventListener("click", closeModal));
   addFriendForm.addEventListener("submit", e => {
     e.preventDefault();
-    addNewFriend(e);
+    addNewFriend(e, friendInput.value);
   });
 };
 
