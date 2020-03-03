@@ -7,29 +7,30 @@ const createGoDutchApp = function() {
   const addFriendModal = document.querySelector(".add-friend-modal");
   const closeModalBtns = document.querySelectorAll(".close-modal");
   const addFriendForm = document.querySelector(".add-friend-form");
+  const addExpenseForm = document.querySelector(".add-expense-form");
   const usersData = document.querySelector(".users-data");
   const friendInput = document.querySelector("#friend-name");
   const selectPayer = document.querySelector("#select-payer");
   let isModalOpen = false;
   let userCount = 1;
-  const toggleModal = e => {
+  const openModal = e => {
     if (!isModalOpen) {
-      let isExpenseBtnClicked = e.target.classList.contains(
-        "add-expense-btn" || "expense-btn"
-      );
-      isExpenseBtnClicked
-        ? addexpenseModal.classList.add("open-modal")
-        : addFriendModal.classList.add("open-modal");
+      let isFriendModalOpen = e.target.classList.contains("add-friend-btn");
+      isFriendModalOpen
+        ? addFriendModal.classList.add("open-modal")
+        : addexpenseModal.classList.add("open-modal");
       isModalOpen = !isModalOpen;
     }
   };
   const closeModal = e => {
-    let isCancelExpenseBtnClicked = e.target.classList.contains(
-      "close-expense-modal"
-    );
-    isCancelExpenseBtnClicked
-      ? addexpenseModal.classList.remove("open-modal")
-      : addFriendModal.classList.remove("open-modal");
+    let isFriendModalOpen =
+      e.target.classList.contains("add-friend-form") ||
+      e.target.parentNode.classList.contains("add-friend-form");
+    console.log(isFriendModalOpen);
+    console.log(e.target);
+    isFriendModalOpen
+      ? addFriendModal.classList.remove("open-modal")
+      : addexpenseModal.classList.remove("open-modal");
     isModalOpen = !isModalOpen;
   };
 
@@ -72,11 +73,20 @@ const createGoDutchApp = function() {
     populateUserDetails(friendName);
   };
 
-  addNewBtns.forEach(btn => btn.addEventListener("click", toggleModal));
+  const addNewExpense = e => {
+    console.log("boom");
+    closeModal(e);
+  };
+
+  addNewBtns.forEach(btn => btn.addEventListener("click", openModal));
   closeModalBtns.forEach(btn => btn.addEventListener("click", closeModal));
   addFriendForm.addEventListener("submit", e => {
     e.preventDefault();
     addNewFriend(e, friendInput.value);
+  });
+  addExpenseForm.addEventListener("submit", e => {
+    e.preventDefault();
+    addNewExpense(e);
   });
 };
 
