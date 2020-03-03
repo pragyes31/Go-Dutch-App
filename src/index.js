@@ -10,8 +10,10 @@ const createGoDutchApp = function() {
   const addExpenseForm = document.querySelector(".add-expense-form");
   const usersData = document.querySelector(".users-data");
   const friendInput = document.querySelector("#friend-name");
+  const expenseAmount = document.querySelector("#expense-amount");
   const expensePartner = document.querySelector("#expense-partner");
   const payer = document.querySelector("#payer");
+  const expenseName = document.querySelector("#expense-name");
   let isModalOpen = false;
   let userCount = 1;
   const formatInput = input => {
@@ -65,7 +67,8 @@ const createGoDutchApp = function() {
   const loadUserToSheet = friendName => {
     let user = {
       userName: friendName,
-      userId: `${userCount}`
+      userId: `${userCount}`,
+      expense: []
     };
     balanceSheet = [...balanceSheet, user];
   };
@@ -77,8 +80,42 @@ const createGoDutchApp = function() {
     populateUserDetails(friendName);
   };
 
-  const addNewExpense = e => {
+  const loadExpenseToSheet = (
+    expenseName,
+    expenseAmount,
+    payer,
+    indexOfPartner
+  ) => {
+    let newExpense = {
+      type: expenseName,
+      paidAmount: expenseAmount,
+      paidBy: payer
+    };
+    balanceSheet[indexOfPartner].expense.push(newExpense);
+  };
+
+  const addNewExpense = (
+    e,
+    expenseAmount,
+    expenseName,
+    expensePartner,
+    paidBy
+  ) => {
+    let expenseAmountValue = expenseAmount.value;
+    let expenseNameValue = formatInput(expenseName.value);
+    let expensePartnerValue = expensePartner.value;
+    let payer = paidBy.value;
+    let indexOfPartner = balanceSheet.findIndex(
+      elem => elem.userName === expensePartnerValue
+    );
     closeModal(e);
+    loadExpenseToSheet(
+      expenseNameValue,
+      expenseAmountValue,
+      payer,
+      indexOfPartner
+    );
+    console.log(balanceSheet);
   };
 
   const addToPaidByList = e => {
@@ -99,7 +136,7 @@ const createGoDutchApp = function() {
   });
   addExpenseForm.addEventListener("submit", e => {
     e.preventDefault();
-    addNewExpense(e);
+    addNewExpense(e, expenseAmount, expenseName, expensePartner, payer);
   });
   expensePartner.addEventListener("change", addToPaidByList);
 };
