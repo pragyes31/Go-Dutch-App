@@ -14,6 +14,10 @@ const createGoDutchApp = function() {
   const payer = document.querySelector("#payer");
   let isModalOpen = false;
   let userCount = 1;
+  const formatInput = input => {
+    let newInput = input.trim();
+    return newInput.charAt(0).toUpperCase() + newInput.slice(1);
+  };
   const openModal = e => {
     if (!isModalOpen) {
       let isFriendModalOpen = e.target.classList.contains("add-friend-btn");
@@ -66,14 +70,14 @@ const createGoDutchApp = function() {
     balanceSheet = [...balanceSheet, user];
   };
 
-  const addNewFriend = (e, friendName) => {
+  const addNewFriend = (e, friend) => {
+    let friendName = formatInput(friend.value);
     closeModal(e);
     loadUserToSheet(friendName);
     populateUserDetails(friendName);
   };
 
   const addNewExpense = e => {
-    console.log("boom");
     closeModal(e);
   };
 
@@ -91,7 +95,7 @@ const createGoDutchApp = function() {
   closeModalBtns.forEach(btn => btn.addEventListener("click", closeModal));
   addFriendForm.addEventListener("submit", e => {
     e.preventDefault();
-    addNewFriend(e, friendInput.value);
+    addNewFriend(e, friendInput);
   });
   addExpenseForm.addEventListener("submit", e => {
     e.preventDefault();
