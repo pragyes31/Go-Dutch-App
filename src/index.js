@@ -10,7 +10,8 @@ const createGoDutchApp = function() {
   const addExpenseForm = document.querySelector(".add-expense-form");
   const usersData = document.querySelector(".users-data");
   const friendInput = document.querySelector("#friend-name");
-  const selectPayer = document.querySelector("#select-payer");
+  const expensePartner = document.querySelector("#expense-partner");
+  const payer = document.querySelector("#payer");
   let isModalOpen = false;
   let userCount = 1;
   const openModal = e => {
@@ -26,8 +27,6 @@ const createGoDutchApp = function() {
     let isFriendModalOpen =
       e.target.classList.contains("add-friend-form") ||
       e.target.parentNode.classList.contains("add-friend-form");
-    console.log(isFriendModalOpen);
-    console.log(e.target);
     isFriendModalOpen
       ? addFriendModal.classList.remove("open-modal")
       : addexpenseModal.classList.remove("open-modal");
@@ -54,7 +53,7 @@ const createGoDutchApp = function() {
   <div class="user-balance-sheet"></div>
 </div>`;
     usersData.innerHTML += userDataMarkup;
-    selectPayer.innerHTML += `<option value="${friendName}">${friendName}</option>`;
+    expensePartner.innerHTML += `<option value="${friendName}">${friendName}</option>`;
     friendInput.value = "";
     userCount++;
   };
@@ -78,6 +77,16 @@ const createGoDutchApp = function() {
     closeModal(e);
   };
 
+  const addToPaidByList = e => {
+    let selectedPartner = e.target.value;
+    let paidByMarkup = `
+    <option value="">--</option>
+    <option value="You">You</option>
+    <option value=${selectedPartner}>${selectedPartner}</option>
+    `;
+    payer.innerHTML = paidByMarkup;
+  };
+
   addNewBtns.forEach(btn => btn.addEventListener("click", openModal));
   closeModalBtns.forEach(btn => btn.addEventListener("click", closeModal));
   addFriendForm.addEventListener("submit", e => {
@@ -88,6 +97,7 @@ const createGoDutchApp = function() {
     e.preventDefault();
     addNewExpense(e);
   });
+  expensePartner.addEventListener("change", addToPaidByList);
 };
 
 const goDutchApp = new createGoDutchApp();
