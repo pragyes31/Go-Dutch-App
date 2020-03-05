@@ -94,6 +94,12 @@ const createGoDutchApp = function() {
     balanceSheet[indexOfPartner].expense.push(newExpense);
   };
 
+  const resetExpenseForm = () => {
+    expenseName.value = "";
+    expenseAmount.value = "";
+    expensePartner.innerHTML = `<option value="">-Choose a friend-</option>`;
+  };
+
   const addNewExpense = (
     e,
     expenseAmount,
@@ -108,6 +114,7 @@ const createGoDutchApp = function() {
     let indexOfPartner = balanceSheet.findIndex(
       elem => elem.userName === expensePartnerValue
     );
+    resetExpenseForm();
     closeModal(e);
     loadExpenseToSheet(
       expenseNameValue,
@@ -153,7 +160,8 @@ const demoState = [
         paidAmount: 500,
         paidBy: "Will"
       }
-    ]
+    ],
+    userBalance: -56
   },
   {
     userName: "Eleven",
