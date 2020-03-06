@@ -41,11 +41,11 @@ const createGoDutchApp = function() {
 
   const populateUserDetails = friendName => {
     const userDataMarkup = `
-  <div class="user-data user-${userCount}">
+  <div class="user-data user-${userCount}-data">
   <div class="user-summary">
     <div class="user-details">
-      <div class="user-name user-${userCount}">${friendName}</div>
-      <div class="user-balance user-${userCount}"></div>
+      <div class="user-name user-${userCount}-name">${friendName}</div>
+      <div class="user-balance user-${userCount}-balance"></div>
     </div>
     <div class="accordion-logo">
       <img
@@ -68,7 +68,8 @@ const createGoDutchApp = function() {
     let user = {
       userName: friendName,
       userId: `${userCount}`,
-      expense: []
+      expense: [],
+      userBalance: 0
     };
     balanceSheet = [...balanceSheet, user];
   };
@@ -80,18 +81,25 @@ const createGoDutchApp = function() {
     populateUserDetails(friendName);
   };
 
-  const loadExpenseToSheet = (
-    expenseName,
-    expenseAmount,
-    payer,
-    indexOfPartner
-  ) => {
+  const updateUserBalance = (payer, share, index) => {
+    payer === "You"
+      ? (balanceSheet[index].userBalance -= share)
+      : (balanceSheet[index].userBalance += share);
+    let modBalance = Math.abs(balanceSheet[index].userBalance);
+    let balanceToUi = document.querySelector(`.user-${index + 1}-balance`);
+    balanceSheet[index].userBalance > 0
+      ? (balanceToUi.innerHTML = `You owe ${modBalance}`)
+      : (balanceToUi.innerHTML = `owes you ${modBalance}`);
+  };
+
+  const loadExpenseToSheet = (name, amt, payer, index, share) => {
     let newExpense = {
-      type: expenseName,
-      paidAmount: expenseAmount,
+      type: name,
+      paidAmount: amt,
       paidBy: payer
     };
-    balanceSheet[indexOfPartner].expense.push(newExpense);
+    balanceSheet[index].expense.push(newExpense);
+    updateUserBalance(payer, share, index);
   };
 
   const resetExpenseForm = () => {
@@ -111,18 +119,19 @@ const createGoDutchApp = function() {
     let expenseNameValue = formatInput(expenseName.value);
     let expensePartnerValue = expensePartner.value;
     let payer = paidBy.value;
+    let perPersonShare = expenseAmountValue / 2;
     let indexOfPartner = balanceSheet.findIndex(
       elem => elem.userName === expensePartnerValue
     );
-    resetExpenseForm();
     closeModal(e);
+    resetExpenseForm();
     loadExpenseToSheet(
       expenseNameValue,
       expenseAmountValue,
       payer,
-      indexOfPartner
+      indexOfPartner,
+      perPersonShare
     );
-    console.log(balanceSheet);
   };
 
   const addToPaidByList = e => {
