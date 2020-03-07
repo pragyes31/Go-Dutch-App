@@ -1,11 +1,12 @@
 import "./styles.scss";
+import $ from "jquery";
 
 const createGoDutchApp = function() {
   let balanceSheet = [];
   const addNewBtns = document.querySelectorAll(".add-new-btn");
   const addexpenseModal = document.querySelector(".add-expense-modal");
   const addFriendModal = document.querySelector(".add-friend-modal");
-  const closeModalBtns = document.querySelectorAll(".close-modal");
+  //const closeModalBtns = document.querySelectorAll(".close-modal");
   const addFriendForm = document.querySelector(".add-friend-form");
   const addExpenseForm = document.querySelector(".add-expense-form");
   const usersData = document.querySelector(".users-data");
@@ -14,8 +15,9 @@ const createGoDutchApp = function() {
   const expensePartner = document.querySelector("#expense-partner");
   const payer = document.querySelector("#payer");
   const expenseName = document.querySelector("#expense-name");
+  //  let displayExpenseList = document.querySelectorAll(".user-data");
   let isModalOpen = false;
-  let userCount = 1;
+  let userCount = 0;
   const formatInput = input => {
     let newInput = input.trim();
     return newInput.charAt(0).toUpperCase() + newInput.slice(1);
@@ -56,12 +58,17 @@ const createGoDutchApp = function() {
       />
     </div>
   </div>
-  <div class="user-balance-sheet"></div>
+  <div class="user-balance-sheet user-${userCount}-expenses-list"></div>
 </div>`;
+
     usersData.innerHTML += userDataMarkup;
+    //let displayExpenseList = document.querySelectorAll(".user-data");
     expensePartner.innerHTML += `<option value="${friendName}">${friendName}</option>`;
     friendInput.value = "";
     userCount++;
+    document
+      .querySelector(".user-data:last-child")
+      .addEventListener("click", toggleExpenseList);
   };
 
   const loadUserToSheet = friendName => {
@@ -86,7 +93,7 @@ const createGoDutchApp = function() {
       ? (balanceSheet[index].userBalance -= share)
       : (balanceSheet[index].userBalance += share);
     let modBalance = Math.abs(balanceSheet[index].userBalance);
-    let balanceToUi = document.querySelector(`.user-${index + 1}-balance`);
+    let balanceToUi = document.querySelector(`.user-${index}-balance`);
     balanceSheet[index].userBalance > 0
       ? (balanceToUi.innerHTML = `You owe ${modBalance}`)
       : (balanceToUi.innerHTML = `owes you ${modBalance}`);
@@ -105,7 +112,8 @@ const createGoDutchApp = function() {
   const resetExpenseForm = () => {
     expenseName.value = "";
     expenseAmount.value = "";
-    expensePartner.innerHTML = `<option value="">-Choose a friend-</option>`;
+    expensePartner[0].setAttribute("selected", true);
+    payer.innerHTML = "";
   };
 
   const addNewExpense = (
@@ -144,8 +152,13 @@ const createGoDutchApp = function() {
     payer.innerHTML = paidByMarkup;
   };
 
+  const toggleExpenseList = e => {
+    console.log(e.currentTarget.classList);
+  };
+
   addNewBtns.forEach(btn => btn.addEventListener("click", openModal));
-  closeModalBtns.forEach(btn => btn.addEventListener("click", closeModal));
+  $(".close-modal").on("click", closeModal);
+  //$(".close-modal").forEach(btn => btn.on("click", closeModal));
   addFriendForm.addEventListener("submit", e => {
     e.preventDefault();
     addNewFriend(e, friendInput);

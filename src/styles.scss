@@ -83,6 +83,7 @@ body {
   padding: 0px 20px;
   background-color:lighten($background-color, 30%);
   color: lighten($font-color, 50%);
+  cursor: pointer;
 }
 
 .user-summary {
@@ -96,6 +97,14 @@ body {
 
 .accordion-logo {
   cursor: pointer;
+}
+
+.user-balance-sheet {
+  display: none;
+}
+
+.user-balance-sheet-active {
+  display: block;
 }
 
 .modal-window {

@@ -8,6 +8,7 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
+    "jquery": "3.4.1",
     "node-sass": "4.13.1",
     "sass": "1.26.1"
   },
