@@ -3,19 +3,14 @@ import $ from "jquery";
 
 const createGoDutchApp = function() {
   let balanceSheet = [];
-  const addNewBtns = document.querySelectorAll(".add-new-btn");
   const addexpenseModal = document.querySelector(".add-expense-modal");
   const addFriendModal = document.querySelector(".add-friend-modal");
-  //const closeModalBtns = document.querySelectorAll(".close-modal");
-  const addFriendForm = document.querySelector(".add-friend-form");
-  const addExpenseForm = document.querySelector(".add-expense-form");
   const usersData = document.querySelector(".users-data");
   const friendInput = document.querySelector("#friend-name");
   const expenseAmount = document.querySelector("#expense-amount");
   const expensePartner = document.querySelector("#expense-partner");
   const payer = document.querySelector("#payer");
   const expenseName = document.querySelector("#expense-name");
-  //  let displayExpenseList = document.querySelectorAll(".user-data");
   let isModalOpen = false;
   let userCount = 0;
   const formatInput = input => {
@@ -24,10 +19,11 @@ const createGoDutchApp = function() {
   };
   const openModal = e => {
     if (!isModalOpen) {
+      console.log(e.target);
       let isFriendModalOpen = e.target.classList.contains("add-friend-btn");
       isFriendModalOpen
-        ? addFriendModal.classList.add("open-modal")
-        : addexpenseModal.classList.add("open-modal");
+        ? $(".add-friend-modal").show()
+        : $(".add-expense-modal").show();
       isModalOpen = !isModalOpen;
     }
   };
@@ -36,8 +32,8 @@ const createGoDutchApp = function() {
       e.target.classList.contains("add-friend-form") ||
       e.target.parentNode.classList.contains("add-friend-form");
     isFriendModalOpen
-      ? addFriendModal.classList.remove("open-modal")
-      : addexpenseModal.classList.remove("open-modal");
+      ? $(".add-friend-modal").hide()
+      : $(".add-expense-modal").hide();
     isModalOpen = !isModalOpen;
   };
 
@@ -66,9 +62,7 @@ const createGoDutchApp = function() {
     expensePartner.innerHTML += `<option value="${friendName}">${friendName}</option>`;
     friendInput.value = "";
     userCount++;
-    document
-      .querySelector(".user-data:last-child")
-      .addEventListener("click", toggleExpenseList);
+    $(".user-data:last-child").on("click", toggleExpenseList);
   };
 
   const loadUserToSheet = friendName => {
@@ -156,18 +150,17 @@ const createGoDutchApp = function() {
     console.log(e.currentTarget.classList);
   };
 
-  addNewBtns.forEach(btn => btn.addEventListener("click", openModal));
+  $(".add-new-btn").on("click", openModal);
   $(".close-modal").on("click", closeModal);
-  //$(".close-modal").forEach(btn => btn.on("click", closeModal));
-  addFriendForm.addEventListener("submit", e => {
+  $(".add-friend-form").on("submit", e => {
     e.preventDefault();
     addNewFriend(e, friendInput);
   });
-  addExpenseForm.addEventListener("submit", e => {
+  $(".add-expense-form").on("submit", e => {
     e.preventDefault();
     addNewExpense(e, expenseAmount, expenseName, expensePartner, payer);
   });
-  expensePartner.addEventListener("change", addToPaidByList);
+  $("#expense-partner").on("change", addToPaidByList);
 };
 
 const goDutchApp = new createGoDutchApp();
