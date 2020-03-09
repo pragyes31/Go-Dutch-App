@@ -121,6 +121,15 @@ body {
   display: block;
 }
 
+@media (max-width: 600px) {
+  .app-dashboard {
+    min-width: 100%; 
+  }
+  .modal-window {
+    width: 80%;
+  }
+}
+
 
 @media (min-width: 320px) and (max-width: 480px) {
  
@@ -136,7 +145,7 @@ body {
   }
 
   .modal-window {
-    width: 100%;
+    width: 80%;
   }
  
 }
