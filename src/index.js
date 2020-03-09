@@ -3,8 +3,6 @@ import $ from "jquery";
 
 const createGoDutchApp = function() {
   let balanceSheet = [];
-  const addexpenseModal = document.querySelector(".add-expense-modal");
-  const addFriendModal = document.querySelector(".add-friend-modal");
   const usersData = document.querySelector(".users-data");
   const friendInput = document.querySelector("#friend-name");
   const expenseAmount = document.querySelector("#expense-amount");
@@ -20,7 +18,7 @@ const createGoDutchApp = function() {
   const openModal = e => {
     if (!isModalOpen) {
       console.log(e.target);
-      let isFriendModalOpen = e.target.classList.contains("add-friend-btn");
+      let isFriendModalOpen = $(e.target).hasClass("add-friend-btn");
       isFriendModalOpen
         ? $(".add-friend-modal").show()
         : $(".add-expense-modal").show();
@@ -29,8 +27,8 @@ const createGoDutchApp = function() {
   };
   const closeModal = e => {
     let isFriendModalOpen =
-      e.target.classList.contains("add-friend-form") ||
-      e.target.parentNode.classList.contains("add-friend-form");
+      $(e.target).hasClass("add-friend-form") ||
+      $(e.target.parentNode).hasClass("add-friend-form");
     isFriendModalOpen
       ? $(".add-friend-modal").hide()
       : $(".add-expense-modal").hide();
@@ -58,7 +56,6 @@ const createGoDutchApp = function() {
 </div>`;
 
     usersData.innerHTML += userDataMarkup;
-    //let displayExpenseList = document.querySelectorAll(".user-data");
     expensePartner.innerHTML += `<option value="${friendName}">${friendName}</option>`;
     friendInput.value = "";
     userCount++;
@@ -87,10 +84,10 @@ const createGoDutchApp = function() {
       ? (balanceSheet[index].userBalance -= share)
       : (balanceSheet[index].userBalance += share);
     let modBalance = Math.abs(balanceSheet[index].userBalance);
-    let balanceToUi = document.querySelector(`.user-${index}-balance`);
+    let balanceToUi = $(`.user-${index}-balance`);
     balanceSheet[index].userBalance > 0
-      ? (balanceToUi.innerHTML = `You owe ${modBalance}`)
-      : (balanceToUi.innerHTML = `owes you ${modBalance}`);
+      ? balanceToUi.text(`You owe ${modBalance}`)
+      : balanceToUi.text(`owes you ${modBalance}`);
   };
 
   const loadExpenseToSheet = (name, amt, payer, index, share) => {
@@ -137,7 +134,7 @@ const createGoDutchApp = function() {
   };
 
   const addToPaidByList = e => {
-    let selectedPartner = e.target.value;
+    let selectedPartner = $(e.target).val();
     let paidByMarkup = `
     <option value="">--</option>
     <option value="You">You</option>
