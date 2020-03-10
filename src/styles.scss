@@ -107,7 +107,7 @@ body {
 .modal-window {
   display: none;
   width: 500px;
-  height: 300px;
+  height: 330px;
   background-color: #eee;
   z-index: 4;
   margin: 0 auto;
@@ -115,6 +115,17 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 50px;
+}
+
+.add-friend-modal {
+  width: 400px;
+  height: 240px;
+}
+
+form {  
+  @include flex-position(center, center);
+  flex-direction: column;
 }
 
 .modal-header {
@@ -129,15 +140,34 @@ body {
   margin-bottom: 30px;
 }
 
-.add-friend-header {
-  background-color: lighten($secondary-color, 30%);
+.add-friend-header, .friend-btn {
+  background-color: lighten($secondary-color, 5%);
   color:$background-color;
 }
 
-.add-expense-header {
+.add-expense-header, .expense-btn {
   background-color: lighten($primary-color, 5%);
   color:$font-color;
 }
+
+.modal-btn {
+  height: 40px;
+  width: 150px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  margin:10px;
+}
+
+.friend-btn:hover {
+  background-color: $secondary-color;
+}
+
+.expense-btn:hover {
+  background-color: $primary-color;
+}
+
 
 @media (max-width: 600px) {
   .app-dashboard {

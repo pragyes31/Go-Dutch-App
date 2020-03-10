@@ -28,16 +28,21 @@
           </div>
           <div class="users-data"></div>
           <div class="add-friend-modal modal-window">
+            <header class="modal-header add-friend-header">
+              Add new Friend
+            </header>
             <form class="add-friend-form">
-              <header class="modal-header add-friend-header">
-                Add new Friend
-              </header>
               <div class="friend-name-input">
                 <label for="friend-name">Name:</label>
                 <input id="friend-name" type="text" required />
               </div>
-              <button type="submit" class="friend-btn">Add Friend</button>
-              <button type="button" class="close-modal close-friend-modal">
+              <button type="submit" class="friend-btn modal-btn">
+                Add Friend</button
+              ><br />
+              <button
+                type="button"
+                class="close-modal close-friend-modal modal-btn"
+              >
                 Cancel
               </button>
             </form>
@@ -55,17 +60,24 @@
                 <label for="expense-amount">Amount</label>
                 <input id="expense-amount" type="number" required />
               </div>
-              <label for="expense-partner">Select expense partner</label>
-              <select name="expense-partner" id="expense-partner" required>
-                <option value="choose">-Choose a friend-</option> </select
-              ><br /><br />
+              <div class="expense-partner-input">
+                <label for="expense-partner">Select expense partner</label>
+                <select name="expense-partner" id="expense-partner" required>
+                  <option value="choose">-Choose a friend-</option>
+                </select>
+              </div>
+              <div class="payer-input">
+                <label for="payer">Paid by:</label>
+                <select name="payer" id="payer" required></select>
+              </div>
 
-              <label for="payer">Paid by:</label>
-              <select name="payer" id="payer" required></select
-              ><br /><br />
-
-              <button type="submit" class="expense-btn">Add Expense</button>
-              <button type="button" class="close-modal close-expense-modal">
+              <button type="submit" class="expense-btn modal-btn">
+                Add Expense</button
+              ><br />
+              <button
+                type="button"
+                class="close-modal close-expense-modal modal-btn"
+              >
                 Cancel
               </button>
             </form>
