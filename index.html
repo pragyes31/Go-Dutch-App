@@ -29,8 +29,13 @@
           <div class="users-data"></div>
           <div class="add-friend-modal modal-window">
             <form class="add-friend-form">
-              <label for="friend-name">Name:</label>
-              <input id="friend-name" type="text" required /><br />
+              <header class="modal-header add-friend-header">
+                Add new Friend
+              </header>
+              <div class="friend-name-input">
+                <label for="friend-name">Name:</label>
+                <input id="friend-name" type="text" required />
+              </div>
               <button type="submit" class="friend-btn">Add Friend</button>
               <button type="button" class="close-modal close-friend-modal">
                 Cancel
@@ -39,12 +44,17 @@
           </div>
           <div class="add-expense-modal modal-window">
             <form class="add-expense-form">
-              <label for="expense-name">Expense Name</label>
-              <input id="expense-name" type="text" required /><br />
-
-              <label for="expense-amount">Amount</label>
-              <input id="expense-amount" type="number" required /><br />
-
+              <header class="modal-header add-expense-header">
+                Add new Expense
+              </header>
+              <div class="expense-name-input">
+                <label for="expense-name">Expense Name</label>
+                <input id="expense-name" type="text" required />
+              </div>
+              <div class="expense-amt-input">
+                <label for="expense-amount">Amount</label>
+                <input id="expense-amount" type="number" required />
+              </div>
               <label for="expense-partner">Select expense partner</label>
               <select name="expense-partner" id="expense-partner" required>
                 <option value="choose">-Choose a friend-</option> </select
