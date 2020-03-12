@@ -75,6 +75,11 @@ body {
   color:$background-color;
 }
 
+.friend-btn {
+  margin-bottom:0px;
+}
+
+
 .users-data {
   margin-top: 50px;
 }
@@ -106,8 +111,6 @@ body {
 
 .modal-window {
   display: none;
-  width: 500px;
-  height: 330px;
   background-color: #eee;
   z-index: 4;
   margin: 0 auto;
@@ -115,18 +118,31 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 50px;
+  border-radius: 20px;
 }
 
 .add-friend-modal {
   width: 400px;
-  height: 240px;
+  height: 230px;
+}
+
+.add-expense-modal {
+  width: 400px;
+  height: 330px;
 }
 
 form {  
   @include flex-position(center, center);
   flex-direction: column;
+
+  .input-div {
+    width:100%;
+    margin:5px;
+    }
+    
 }
+
+
 
 .modal-header {
   width: 100%;
@@ -158,6 +174,15 @@ form {
   cursor: pointer;
   border: none;
   margin:10px;
+}
+
+.friend-btn, .expense-btn {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+.close-modal {
+  margin-top:0px;
 }
 
 .friend-btn:hover {
@@ -194,6 +219,10 @@ form {
 
   .modal-window {
     width: 80%;
+  }
+
+  .add-expense-modal {
+    height: 365px;
   }
  
 }
