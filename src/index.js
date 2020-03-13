@@ -2,7 +2,12 @@ import "./styles.scss";
 import $ from "jquery";
 
 const createGoDutchApp = function() {
-  let balanceSheet = [];
+  const usersData = document.querySelector(".users-data");
+  const friendInput = document.querySelector("#friend-name");
+  const expenseAmount = document.querySelector("#expense-amount");
+  const expensePartner = document.querySelector("#expense-partner");
+  const payer = document.querySelector("#payer");
+  const expenseName = document.querySelector("#expense-name");
   let allUsers = [
     {
       userName: "You",
@@ -11,12 +16,6 @@ const createGoDutchApp = function() {
     }
   ];
   let allExpenses = [];
-  const usersData = document.querySelector(".users-data");
-  const friendInput = document.querySelector("#friend-name");
-  const expenseAmount = document.querySelector("#expense-amount");
-  const expensePartner = document.querySelector("#expense-partner");
-  const payer = document.querySelector("#payer");
-  const expenseName = document.querySelector("#expense-name");
   let isModalOpen = false;
   let userCount = 0;
   const formatInput = input => {
@@ -86,13 +85,13 @@ const createGoDutchApp = function() {
     closeModal(e);
   };
 
-  const updateUserBalance = (payer, share, index) => {
-    payer === "You"
-      ? (balanceSheet[index].userBalance -= share)
-      : (balanceSheet[index].userBalance += share);
-    let modBalance = Math.abs(balanceSheet[index].userBalance);
-    let balanceToUi = $(`.user-${index}-balance`);
-    balanceSheet[index].userBalance > 0
+  const updateUserBalance = (share, indexOfPartner, indexOfPayer) => {
+    indexOfPartner === indexOfPayer
+      ? (allUsers[indexOfPartner].userBalance += share)
+      : (allUsers[indexOfPartner].userBalance -= share);
+    let modBalance = Math.abs(allUsers[indexOfPartner].userBalance);
+    let balanceToUi = $(`.user-${indexOfPartner}-balance`);
+    allUsers[indexOfPartner].userBalance > 0
       ? balanceToUi.text(`You owe ${modBalance}`)
       : balanceToUi.text(`owes you ${modBalance}`);
   };
@@ -112,7 +111,7 @@ const createGoDutchApp = function() {
     };
     allExpenses = [...allExpenses, newExpense];
     console.log(allExpenses);
-    updateUserBalance(payer, share, index);
+    updateUserBalance(share, indexOfPartner, indexOfPayer);
   };
 
   const resetExpenseForm = () => {
@@ -179,32 +178,6 @@ const createGoDutchApp = function() {
 };
 
 const goDutchApp = new createGoDutchApp();
-
-const demoState = [
-  {
-    userName: "Will",
-    userId: "user-01",
-    expenses: [
-      {
-        type: "flights",
-        paidAmount: 500,
-        paidBy: "Will"
-      }
-    ],
-    userBalance: -56
-  },
-  {
-    userName: "Eleven",
-    userId: "user-02",
-    expenses: [
-      {
-        type: "Movie tickets",
-        paidAmount: 100,
-        paidBy: "Rahul"
-      }
-    ]
-  }
-];
 
 const demoAllUsers = [
   [
