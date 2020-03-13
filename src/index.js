@@ -3,6 +3,14 @@ import $ from "jquery";
 
 const createGoDutchApp = function() {
   let balanceSheet = [];
+  let allUsers = [
+    {
+      userName: "You",
+      userId: "user-0",
+      userBalance: 0
+    }
+  ];
+  let allExpenses = [];
   const usersData = document.querySelector(".users-data");
   const friendInput = document.querySelector("#friend-name");
   const expenseAmount = document.querySelector("#expense-amount");
@@ -185,5 +193,38 @@ const demoState = [
         paidBy: "Rahul"
       }
     ]
+  }
+];
+
+const demoAllUsers = [
+  [
+    {
+      userName: "You",
+      userId: "user-0",
+      userBalance: 0
+    },
+    {
+      userName: "Bill",
+      userId: "user-02",
+      userBalance: 0
+    },
+    {
+      userName: "Eleven",
+      userId: "user-3",
+      userBalance: 0
+    }
+  ]
+];
+
+const demoAllExpenses = [
+  {
+    type: "Movie tickets",
+    paidAmount: 100,
+    paidBy: "Rahul"
+  },
+  {
+    type: "flights",
+    paidAmount: 500,
+    paidBy: "Will"
   }
 ];
