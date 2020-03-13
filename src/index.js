@@ -66,25 +66,24 @@ const createGoDutchApp = function() {
     usersData.innerHTML += userDataMarkup;
     expensePartner.innerHTML += `<option value="${friendName}">${friendName}</option>`;
     friendInput.value = "";
-    userCount++;
     $(".user-data:last-child").on("click", toggleExpenseList);
   };
 
   const loadUserToSheet = friendName => {
+    userCount++;
     let user = {
       userName: friendName,
       userId: `${userCount}`,
-      expense: [],
       userBalance: 0
     };
-    balanceSheet = [...balanceSheet, user];
+    allUsers = [...allUsers, user];
   };
 
   const addNewFriend = (e, friend) => {
     let friendName = formatInput(friend.value);
-    closeModal(e);
     loadUserToSheet(friendName);
     populateUserDetails(friendName);
+    closeModal(e);
   };
 
   const updateUserBalance = (payer, share, index) => {
@@ -98,13 +97,21 @@ const createGoDutchApp = function() {
       : balanceToUi.text(`owes you ${modBalance}`);
   };
 
-  const loadExpenseToSheet = (name, amt, payer, index, share) => {
+  const loadExpenseToSheet = (
+    name,
+    amt,
+    payer,
+    indexOfPartner,
+    indexOfPayer,
+    share
+  ) => {
     let newExpense = {
       type: name,
       paidAmount: amt,
-      paidBy: payer
+      paidBy: `user-${indexOfPayer}`
     };
-    balanceSheet[index].expense.push(newExpense);
+    allExpenses = [...allExpenses, newExpense];
+    console.log(allExpenses);
     updateUserBalance(payer, share, index);
   };
 
@@ -122,14 +129,16 @@ const createGoDutchApp = function() {
     expensePartner,
     paidBy
   ) => {
-    let expenseAmountValue = expenseAmount.value;
     let expenseNameValue = formatInput(expenseName.value);
+    let expenseAmountValue = expenseAmount.value;
     let expensePartnerValue = expensePartner.value;
     let payer = paidBy.value;
     let perPersonShare = expenseAmountValue / 2;
-    let indexOfPartner = balanceSheet.findIndex(
+    let indexOfPartner = allUsers.findIndex(
       elem => elem.userName === expensePartnerValue
     );
+    let indexOfPayer = allUsers.findIndex(elem => elem.userName === payer);
+    console.log(indexOfPayer);
     closeModal(e);
     resetExpenseForm();
     loadExpenseToSheet(
@@ -137,6 +146,7 @@ const createGoDutchApp = function() {
       expenseAmountValue,
       payer,
       indexOfPartner,
+      indexOfPayer,
       perPersonShare
     );
   };
