@@ -85,7 +85,6 @@ body {
 }
 
 .user-data {
-  padding: 0px 20px;
   background-color:lighten($background-color, 30%);
   color: lighten($font-color, 50%);
   cursor: pointer;
@@ -94,6 +93,7 @@ body {
 .user-summary {
   @include flex-position(space-between, center);
   height: 45px;
+  padding: 0px 20px;
 }
 
 .user-name, .user-balance {
@@ -106,6 +106,9 @@ body {
 
 .user-balance-sheet {
   display: none;
+  background-color: #eee;
+  color: #000;
+  padding: 0px 20px;
 }
 
 

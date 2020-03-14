@@ -18,6 +18,7 @@ const createGoDutchApp = function() {
   let allExpenses = [];
   let isModalOpen = false;
   let userCount = 0;
+  let expenseCount = 1;
   const formatInput = input => {
     let newInput = input.trim();
     return newInput.charAt(0).toUpperCase() + newInput.slice(1);
@@ -59,7 +60,7 @@ const createGoDutchApp = function() {
       />
     </div>
   </div>
-  <div class="user-balance-sheet user-${userCount}-expenses-list"></div>
+  <div class="user-balance-sheet user-${userCount}-expenses-list">ads</div>
 </div>`;
 
     usersData.innerHTML += userDataMarkup;
@@ -99,7 +100,6 @@ const createGoDutchApp = function() {
   const loadExpenseToSheet = (
     name,
     amt,
-    payer,
     indexOfPartner,
     indexOfPayer,
     share
@@ -107,10 +107,11 @@ const createGoDutchApp = function() {
     let newExpense = {
       type: name,
       paidAmount: amt,
-      paidBy: `user-${indexOfPayer}`
+      paidBy: `user-${indexOfPayer}`,
+      expenseId: expenseCount
     };
     allExpenses = [...allExpenses, newExpense];
-    console.log(allExpenses);
+    expenseCount++;
     updateUserBalance(share, indexOfPartner, indexOfPayer);
   };
 
@@ -161,7 +162,10 @@ const createGoDutchApp = function() {
   };
 
   const toggleExpenseList = e => {
-    console.log(e.currentTarget.classList);
+    let expenseList = $(e.currentTarget)
+      .children()
+      .last();
+    expenseList.toggle(400);
   };
 
   $(".add-new-btn").on("click", openModal);
