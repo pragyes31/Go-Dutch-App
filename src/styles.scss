@@ -100,15 +100,22 @@ body {
   display: inline;
 }
 
-.accordion-logo {
-  cursor: pointer;
-}
-
 .user-balance-sheet {
   display: none;
   background-color: #eee;
   color: #000;
   padding: 0px 20px;
+  width:100%;
+}
+
+.expense-item {
+  width: 100%;
+  @include flex-position(space-around, center);
+}
+
+.modify-expense {
+  @include flex-position(space-between, center);
+
 }
 
 
