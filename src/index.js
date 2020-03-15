@@ -88,19 +88,20 @@ const createGoDutchApp = function() {
       : balanceToUi.text(`owes you ${modBalance}`);
   };
 
-  const addExpenseToUi = (expenseObj, payerId) => {
-    let payerName = allUsers.filter(user => user.userId === payerId);
-    console.log(payerName);
+  const addExpenseToUi = (expenseObj, payerId, indexOfPartner) => {
+    let payerObj = allUsers.filter(user => user.userId === payerId);
+    console.log(payerObj);
     let expenseToAdd = `
 <div class="expense-${expenseCount} expense-item">
 <div class="expense-detail">
-  ${payerId} paid ${expenseObj.paidAmount} for ${expenseObj.type}
+  ${payerObj[0].userName} paid ${expenseObj.paidAmount} for ${expenseObj.type}
 </div>
 <div class="modify-expense">
-  <div class="edit-expense">Edit expense</div>
-  <div class="delete-expense">Delete expense</div>
+  <div class="edit-expense">Edit</div>
+  <div class="delete-expense">Delete</div>
 </div>
 </div>`;
+    $(`.user-${indexOfPartner}-expenses-list`).append(expenseToAdd);
   };
 
   const loadExpenseToSheet = (
@@ -118,7 +119,7 @@ const createGoDutchApp = function() {
     };
     allExpenses = [...allExpenses, newExpense];
     expenseCount++;
-    addExpenseToUi(newExpense, `user-${indexOfPayer}`);
+    addExpenseToUi(newExpense, `user-${indexOfPayer}`, indexOfPartner);
     updateUserBalance(share, indexOfPartner, indexOfPayer);
   };
 
@@ -140,7 +141,7 @@ const createGoDutchApp = function() {
     let amount = expenseAmount.value;
     let partner = expensePartner.value;
     let payer = paidBy.value;
-    let perPersonShare = expenseAmountValue / 2;
+    let perPersonShare = amount / 2;
     let indexOfPartner = allUsers.findIndex(elem => elem.userName === partner);
     let indexOfPayer = allUsers.findIndex(elem => elem.userName === payer);
     closeModal(e);
@@ -148,7 +149,6 @@ const createGoDutchApp = function() {
     loadExpenseToSheet(
       expenseNameValue,
       amount,
-      payer,
       indexOfPartner,
       indexOfPayer,
       perPersonShare
