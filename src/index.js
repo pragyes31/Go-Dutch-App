@@ -64,7 +64,7 @@ const createGoDutchApp = function() {
     userCount++;
     let user = {
       userName: friendName,
-      userId: `${userCount}`,
+      userId: `user-${userCount}`,
       userBalance: 0
     };
     allUsers = [...allUsers, user];
@@ -89,6 +89,7 @@ const createGoDutchApp = function() {
   };
 
   const addExpenseToUi = (expenseObj, indexOfPayer, indexOfPartner) => {
+    console.log(expenseObj, indexOfPayer, indexOfPartner);
     let payerObj = allUsers.filter(
       user => user.userId === `user-${indexOfPayer}`
     );
