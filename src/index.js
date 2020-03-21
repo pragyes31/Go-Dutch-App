@@ -44,20 +44,28 @@ const createGoDutchApp = function() {
 
   const populateUserDetails = friendName => {
     const userDataMarkup = `
-  <div class="user-data user-${userCount}-data">
+  <div class="user-${userCount}-data user-data">
   <div class="user-summary">
     <div class="user-details">
-      <div class="user-name user-${userCount}">${friendName}</div>
-      <div class="user-balance user-${userCount}-balance"></div>
+      <div class="user-${userCount} user-name">${friendName}</div>
+      <div class="user-${userCount}-balance user-balance"></div>
     </div>
     </div>
-  <div class="user-balance-sheet user-${userCount}-expenses-list"></div>
+  <div class="user-${userCount}-expenses-list user-balance-sheet"></div>
 </div>`;
 
     usersData.innerHTML += userDataMarkup;
     expensePartner.innerHTML += `<option value="${friendName}">${friendName}</option>`;
     friendInput.value = "";
-    $(".user-data:last-child").on("click", toggleExpenseList);
+  };
+
+  const toggleExpenseList = e => {
+    console.log("Entered toggleExpenseList");
+    let expenseList = $(e.currentTarget);
+    expenseList
+      .children()
+      .last()
+      .toggle(400);
   };
 
   const loadUserToSheet = friendName => {
@@ -168,13 +176,6 @@ const createGoDutchApp = function() {
     payer.innerHTML = paidByMarkup;
   };
 
-  const toggleExpenseList = e => {
-    let expenseList = $(e.currentTarget)
-      .children()
-      .last();
-    expenseList.toggle(400);
-  };
-
   $(".add-new-btn").on("click", openModal);
   $(".close-modal").on("click", closeModal);
   $(".add-friend-form").on("submit", e => {
@@ -186,6 +187,7 @@ const createGoDutchApp = function() {
     addNewExpense(e, expenseAmount, expenseName, expensePartner, payer);
   });
   $("#expense-partner").on("change", addToPaidByList);
+  $(".users-data").on("click", ".user-data", toggleExpenseList);
 };
 
 const goDutchApp = new createGoDutchApp();
