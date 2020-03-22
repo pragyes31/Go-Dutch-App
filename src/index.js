@@ -1,3 +1,16 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  rootElement
+);
+
+/*
 import "./styles.scss";
 import $ from "jquery";
 
@@ -56,7 +69,7 @@ const createGoDutchApp = function() {
 
     usersData.innerHTML += userDataMarkup;
     expensePartner.innerHTML += `<option value="${friendName}">${friendName}</option>`;
-    friendInput.value = "";
+    $("#friend-name").value = "";
   };
 
   const toggleExpenseList = e => {
@@ -78,8 +91,8 @@ const createGoDutchApp = function() {
     allUsers = [...allUsers, user];
   };
 
-  const addNewFriend = (e, friend) => {
-    let friendName = formatInput(friend.value);
+  const addNewFriend = e => {
+    let friendName = formatInput($("#friend-name").value);
     loadUserToSheet(friendName);
     populateUserDetails(friendName);
     closeModal(e);
@@ -180,7 +193,7 @@ const createGoDutchApp = function() {
   $(".close-modal").on("click", closeModal);
   $(".add-friend-form").on("submit", e => {
     e.preventDefault();
-    addNewFriend(e, friendInput);
+    addNewFriend(e);
   });
   $(".add-expense-form").on("submit", e => {
     e.preventDefault();
@@ -224,3 +237,4 @@ const demoAllExpenses = [
     paidBy: "Will"
   }
 ];
+*/
