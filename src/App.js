@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.scss";
-import Header from "./Components/Header.Component";
-import AppDashboard from "./Components/AppDashboard.Component";
+import Header from "./Components/Header";
+import AppDashboard from "./Components/AppDashboard";
 
 export default function App() {
   return (
