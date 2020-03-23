@@ -17,6 +17,10 @@ body {
   padding: 0px;
 }
 
+.App {
+  background-color: #ddd;
+}
+
 .outer-box {
   width:100%;
   @include flex-position(center, center);
