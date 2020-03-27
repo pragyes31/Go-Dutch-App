@@ -4,9 +4,7 @@ import App from "./App";
 
 const appContainer = document.querySelector("#app-container");
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
   appContainer
 );
 
