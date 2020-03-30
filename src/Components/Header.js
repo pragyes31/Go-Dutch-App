@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Header() {
+export default function Header(props) {
   return (
     <div class="header">
-      <header class="main-title">Go-Dutch App</header>
+      <header class="main-title">{props.title}</header>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import AppDashboard from "./Components/AppDashboard";
 export default function App() {
   return (
     <div className="go-dutch-app">
-      <Header />
+      <Header title="Go-Dutch App" />
       <AppDashboard />
     </div>
   );
