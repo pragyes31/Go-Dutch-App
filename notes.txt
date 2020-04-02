@@ -1,0 +1,7 @@
+1. 'this' can only be bind once.
+
+2. In case of arrow functions, 
+  'this' always refers to the enclosed lexical scope
+  no matter how they are called.
+
+3. 
