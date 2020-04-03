@@ -1,12 +1,10 @@
 import React from "react";
 
-export default AddNewExpenseModal() {
+export default function AddNewExpenseModal() {
   return (
     <div class="add-expense-modal modal-window">
       <form class="add-expense-form">
-        <header class="modal-header add-expense-header">
-          Add new Expense
-            </header>
+        <header class="modal-header add-expense-header">Add new Expense</header>
         <div class="expense-name-input input-div">
           <label for="expense-name">Expense Name</label>
           <input id="expense-name" type="text" required />
@@ -23,16 +21,16 @@ export default AddNewExpenseModal() {
         </div>
         <div class="payer-input input-div">
           <label for="payer">Paid by:</label>
-          <select name="payer" id="payer" required></select>
+          <select name="payer" id="payer" required />
         </div>
         <button type="submit" class="expense-btn modal-btn">
-          Add Expense</button><br />
-        <button
-          type="button"
-          class="close-modal close-expense-modal modal-btn">
+          Add Expense
+        </button>
+        <br />
+        <button type="button" class="close-modal close-expense-modal modal-btn">
           Cancel
-            </button>
+        </button>
       </form>
     </div>
-  )
+  );
 }

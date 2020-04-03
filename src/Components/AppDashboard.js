@@ -1,14 +1,16 @@
 import React from "react";
-import AddData from "./AddData";
+import AddNewBtns from "./AddNewBtns";
 import UsersData from "./UsersData";
 import AddNewFriendModal from "./AddNewFriendModal";
+import AddNewExpenseModal from "./AddNewExpenseModal";
 
 export default function AppDashboard() {
   return (
     <div className="app-dashboard">
-      <AddData />
+      <AddNewBtns />
       <UsersData />
       <AddNewFriendModal />
+      <AddNewExpenseModal />
     </div>
   );
 }
