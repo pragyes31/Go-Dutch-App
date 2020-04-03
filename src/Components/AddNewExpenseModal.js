@@ -1,8 +1,7 @@
 import React from "react";
 
-export default function AddNewExpenseModal() {
-  return (
-    <div class="add-expense-modal modal-window">
+const AddNewExpenseModal = () => (
+  <div class="add-expense-modal modal-window">
       <form class="add-expense-form">
         <header class="modal-header add-expense-header">Add new Expense</header>
         <div class="expense-name-input input-div">
@@ -32,5 +31,6 @@ export default function AddNewExpenseModal() {
         </button>
       </form>
     </div>
-  );
-}
+)
+
+export default AddNewExpenseModal

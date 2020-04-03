@@ -2,14 +2,18 @@
   "name": "go-dutch-app",
   "version": "1.0.0",
   "description": "App to split expenses between Friends",
-  "keywords": ["react", "starter"],
+  "keywords": [
+    "react",
+    "starter"
+  ],
   "main": "src/index.js",
   "dependencies": {
     "node-sass": "4.13.1",
-    "sass": "1.26.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-scripts": "3.0.1"
+    "react-modal": "3.11.2",
+    "react-scripts": "3.0.1",
+    "sass": "1.26.1"
   },
   "devDependencies": {
     "typescript": "3.3.3"
@@ -20,5 +24,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
