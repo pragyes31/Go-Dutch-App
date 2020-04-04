@@ -122,17 +122,16 @@ body {
 }
 
 
-// .modal-window {
-//   display: none;
-//   background-color: #eee;
-//   z-index: 4;
-//   margin: 0 auto;
-//   position: fixed;
-//   left: 50%;
-//   top: 50%;
-//   transform: translate(-50%, -50%);
-//   border-radius: 20px;
-// }
+.modal-window {
+  background-color: #eee;
+  z-index: 4;
+  margin: 0 auto;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 60px;
+}
 
 .add-friend-modal {
   width: 400px;
@@ -142,6 +141,7 @@ body {
 .add-expense-modal {
   width: 400px;
   height: 330px;
+  display:none;
 }
 
 form {  
