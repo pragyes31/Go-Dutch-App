@@ -9,7 +9,7 @@ export default class AppDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFriendModalOpen: false
+      friendModalOpen: true
     };
   }
   render() {
@@ -18,7 +18,7 @@ export default class AppDashboard extends React.Component {
         <Header title="Go-Dutch App" />
         <AddNewBtns />
         <UsersData />
-        <AddNewFriendModal />
+        <AddNewFriendModal friendModalOpen={this.state.friendModalOpen} />
         <AddNewExpenseModal />
       </div>
     );
