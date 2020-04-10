@@ -2,17 +2,20 @@ import React from "react";
 
 export default function AddData(props) {
   const handleNewFriend = () => {
-    console.log("boom");
+    props.openModal();
   };
   return (
-    <div class="add-data">
-      <div class="add-friend">
-        <button onClick={handleNewFriend} class="add-friend-btn add-new-btn">
+    <div className="add-data">
+      <div className="add-friend">
+        <button
+          onClick={handleNewFriend}
+          className="add-friend-btn add-new-btn"
+        >
           Add new Friend
         </button>
       </div>
-      <div class="add-expense">
-        <button class="add-expense-btn add-new-btn">Add new Expense</button>
+      <div className="add-expense">
+        <button className="add-expense-btn add-new-btn">Add new Expense</button>
       </div>
     </div>
   );
